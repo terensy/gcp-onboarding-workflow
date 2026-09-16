@@ -1,0 +1,16 @@
+# 複製為 terraform.tfvars 後填入貴組織的實際值，terraform.tfvars 不應提交到版控。
+
+org_id             = "123456789012"
+billing_account_id = "012345-6789AB-CDEF01"
+domain             = "example.com"
+
+# 範例：sandbox folder 額外需要一個 Compute Admin 群組，catalog 沒有收錄這種
+# 特殊例外，用 extra_bindings 補上。
+extra_bindings = {
+  sandbox_compute_admins = {
+    scope       = "folder"
+    resource_id = "987654321000"
+    role        = "roles/compute.admin"
+    member      = "group:sandbox-compute-admins@example.com"
+  }
+}

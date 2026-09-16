@@ -1,0 +1,21 @@
+# 複製為 terraform.tfvars 後填入貴組織的實際值，terraform.tfvars 不應提交到版控。
+
+org_id = "123456789012"
+
+# Admin Console → Account → Account settings 取得
+allowed_customer_ids = [
+  "C0xxxxxxx",
+]
+
+allowed_resource_locations = [
+  "in:asia-east1-locations",
+]
+
+# 範例：sandbox 資料夾允許外部 IP（其餘資料夾仍套用 org 層級的 deny_all）
+folder_overrides = {
+  sandbox_allow_external_ip = {
+    folder_id = "987654321000"
+    policy_id = "compute.vmExternalIpAccess"
+    rule_type = "allow_all"
+  }
+}

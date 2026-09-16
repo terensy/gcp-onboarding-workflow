@@ -1,0 +1,395 @@
+# =============================================================================
+# GCP Landing Zone — Organization Policy 參考目錄 (policies_catalog.yaml)
+# 對應 CIS Google Cloud Platform Foundation Benchmark v5.0.0
+#
+# 這份檔案是 Terraform module（modules/org_policies）的唯一輸入資料來源。
+# 每條政策的欄位意義：
+#
+#   category            cis_gap        CIS 建議新增，會被 module 產生 Terraform 資源
+#                        extended       延伸建議（CIS 未直接點名，方向上支援對應控制項）
+#                        auto_enforced  Google 已自動強制；其中命名語意明確的 5 項已升級為
+#                                       type: boolean 並會產生 Terraform 資源，其餘 14 項仍是
+#                                       type: unverified，僅供文件對照，不產生資源（詳見下方
+#                                       auto_enforced 區塊的說明）
+#
+#   type                boolean        對應 spec.rules.enforce = "TRUE"/"FALSE"
+#                        list           對應 spec.rules.values{} 或 allow_all/deny_all
+#                        unverified     value 形狀未經官方 schema 確認，module 會強制跳過
+#                                       （即使 enabled: true 也不會建立資源，見 main.tf 的
+#                                       local.org_level_policies 過濾條件）
+#
+#   value_kind          list 型態底下值的實際格式（customer_id / location_group /
+#                        resource_reference / string_list …），供人工填值時參考
+#
+#   default_mode        list 型態的預設行為：allow_values / deny_values / allow_all / deny_all
+#
+#   attach_level         organization / folder — 建議套用的層級
+#   folder_override_allowed  是否允許用 var.folder_overrides 在特定 folder 覆寫例外
+#   enabled              module 預設是否套用（僅對 type != unverified 的項目有效）
+#   cis_ref               對應 CIS Benchmark 控制項編號，寫入 Terraform 資源的 description
+# =============================================================================
+
+meta:
+  resource_type: google_org_policy_policy
+  terraform_google_provider_min_version: ">= 4.60.0"
+  required_iam_role: roles/orgpolicy.policyAdmin
+  name_pattern: "{parent}/policies/{constraint_id}"
+  benchmark: "CIS Google Cloud Platform Foundation Benchmark v5.0.0"
+
+policies:
+
+  # =========================================================================
+  # CIS 建議新增（12 項，module 預設會產生 Terraform 資源）
+  # =========================================================================
+
+  - id: iam.allowedPolicyMemberDomains
+    display_name: "Domain restricted sharing"
+    category: cis_gap
+    type: list
+    value_kind: customer_id
+    default_mode: allow_values
+    default_values: []            # 填入貴組織 Cloud Identity Customer ID，格式 C0xxxxxxx
+    attach_level: organization
+    folder_override_allowed: false
+    enabled: true
+    cis_ref: ["1.2", "5.1", "7.1"]
+    notes: >
+      值必須是 Cloud Identity Customer ID（非網域字串），於 Admin Console
+      → Account → Account settings 取得。透過 value_overrides 變數注入實際值。
+
+  - id: iam.disableServiceAccountKeyCreation
+    display_name: "Disable service account key creation"
+    category: cis_gap
+    type: boolean
+    default_enforce: true
+    attach_level: organization
+    folder_override_allowed: true
+    enabled: true
+    cis_ref: ["1.5"]
+
+  - id: iam.disableServiceAccountCreation
+    display_name: "Disable service account creation"
+    category: cis_gap
+    type: boolean
+    default_enforce: false
+    attach_level: folder
+    folder_override_allowed: true
+    enabled: false                 # 選用；預設關閉，多數組織仍需要建立服務帳戶
+    cis_ref: ["1.5 附註"]
+
+  - id: compute.skipDefaultNetworkCreation
+    display_name: "Skip default network creation"
+    category: cis_gap
+    type: boolean
+    default_enforce: true
+    attach_level: organization
+    folder_override_allowed: false
+    enabled: true
+    cis_ref: ["3.1"]
+
+  - id: compute.requireOsLogin
+    display_name: "Require OS Login"
+    category: cis_gap
+    type: boolean
+    default_enforce: true
+    attach_level: organization
+    folder_override_allowed: false
+    enabled: true
+    cis_ref: ["4.4"]
+
+  - id: compute.vmExternalIpAccess
+    display_name: "Define allowed external IPs for VM instances"
+    category: cis_gap
+    type: list
+    value_kind: resource_reference
+    default_mode: deny_all
+    attach_level: organization
+    folder_override_allowed: true   # 例如 DMZ / bastion 資料夾白名單特定 VM
+    enabled: true
+    cis_ref: ["4.9"]
+
+  - id: compute.disableSerialPortAccess
+    display_name: "Disable VM serial port access"
+    category: cis_gap
+    type: boolean
+    default_enforce: true
+    attach_level: organization
+    folder_override_allowed: false
+    enabled: true
+    cis_ref: ["4.5"]
+
+  - id: compute.requireShieldedVm
+    display_name: "Shielded VMs"
+    category: cis_gap
+    type: boolean
+    default_enforce: true
+    attach_level: organization
+    folder_override_allowed: false
+    enabled: true
+    cis_ref: ["4.8"]
+
+  - id: storage.uniformBucketLevelAccess
+    display_name: "Enforce uniform bucket-level access"
+    category: cis_gap
+    type: boolean
+    default_enforce: true
+    attach_level: organization
+    folder_override_allowed: false
+    enabled: true
+    cis_ref: ["5.2"]
+
+  - id: sql.restrictPublicIp
+    display_name: "Restrict Public IP access on Cloud SQL instances"
+    category: cis_gap
+    type: boolean
+    default_enforce: true
+    attach_level: organization
+    folder_override_allowed: false
+    enabled: true
+    cis_ref: ["6.7"]
+
+  - id: sql.restrictAuthorizedNetworks
+    display_name: "Restrict Authorized Networks on Cloud SQL instances"
+    category: cis_gap
+    type: boolean
+    default_enforce: true
+    attach_level: organization
+    folder_override_allowed: false
+    enabled: true
+    cis_ref: ["6.5"]
+
+  - id: gcp.resourceLocations
+    display_name: "Resource locations"
+    category: cis_gap
+    type: list
+    value_kind: location_group      # 例如 in:asia-east1-locations, in:us-locations
+    default_mode: allow_values
+    default_values: []              # 填入核准地區
+    attach_level: organization
+    folder_override_allowed: false
+    enabled: true
+    cis_ref: ["1.1.4 範例"]
+
+  # =========================================================================
+  # 延伸建議（2 項，CIS 文字未直接點名，方向上強化對應控制項）
+  # =========================================================================
+
+  - id: storage.publicAccessPrevention
+    display_name: "Public access prevention"
+    category: extended
+    type: boolean
+    default_enforce: true
+    attach_level: organization
+    folder_override_allowed: false
+    enabled: true
+    cis_ref: ["延伸支援 5.1"]
+    confidence: verify_before_use
+
+  - id: compute.vmCanIpForward
+    display_name: "Restrict VM IP forwarding"
+    category: extended
+    type: list
+    value_kind: resource_reference
+    default_mode: deny_all
+    attach_level: organization
+    folder_override_allowed: true
+    enabled: false                  # 命名可能異動，預設關閉，核對後再開
+    cis_ref: ["延伸支援 4.6"]
+    confidence: verify_before_use
+    notes: >
+      新一代 managed constraint，正式命名可能為 compute.managed.vmCanIpForward。
+      套用前請以 gcloud org-policies list --organization=ORG_ID 核對可用性。
+
+  # =========================================================================
+  # Google 自動強制（19 項）
+  #
+  # 其中 5 項命名語意明確（disable/block 型布林，猜錯 schema 只會導致
+  # apply 報錯，不會靜默套用錯誤設定）已改為 type: boolean、enabled: true，
+  # 會被 module 實際 codify 成 Terraform 資源，每次 apply 都重新確認/校正
+  # 實際生效狀態，不再單純信任 Google 的預設保護。
+  #
+  # 其餘 14 項仍是 type: unverified：多為 list 型且需要組織特定的值（專案
+  # 白名單、FQDN、服務名稱…），或「Use X」命名語意方向不明確，猜錯有可能
+  # 「成功套用但做錯事」而非安全失敗，風險層級不同，不適合用猜的寫入。
+  # module 仍會強制跳過這些（即使 enabled: true 也一樣）。
+  #
+  # 要驗證「這 14 項＋其餘全部 33 項目前實際生效狀態」，不需要先猜對
+  # schema，執行唯讀腳本（讀取 gcloud --effective 的 booleanPolicy/listPolicy
+  # 欄位，型態由 API 回應自己標明）：
+  #   ./scripts/verify_effective_policies.sh ORG_ID
+  #
+  # 要把某一項 unverified 升級為可管理狀態，請先用下列指令核對 schema，
+  # 再把 type 改成 boolean 或 list：
+  #   gcloud org-policies describe constraints/<id> --organization=ORG_ID --effective
+  # =========================================================================
+
+  - id: iam.serviceAccountKeyExposureResponse
+    display_name: "Service Account Key Exposure Response"
+    category: auto_enforced
+    type: unverified
+    enabled: false
+    cis_ref: []
+    notes: "可能是 enum 型態（回應動作），非單純布林，需先核對 schema。"
+
+  - id: iam.managed.disableServiceAccountApiKeyCreation
+    display_name: "Block service account API key bindings"
+    category: auto_enforced
+    type: unverified
+    enabled: false
+    cis_ref: []
+
+  - id: iam.disableCrossProjectServiceAccountUsage
+    display_name: "Disable cross-project service account usage"
+    category: auto_enforced
+    type: boolean
+    default_enforce: true
+    attach_level: organization
+    folder_override_allowed: false
+    enabled: true
+    cis_ref: []
+    notes: >
+      Google 預設自動強制；顯性 codify 成 Terraform 資源以便每次 apply 都
+      重新確認/校正實際生效狀態，而非只信任預設值（drift 防護）。
+
+  - id: iam.allowServiceAccountCredentialLifetimeExtension
+    display_name: "Allow Service Account Credential Lifetime Extension"
+    category: auto_enforced
+    type: unverified
+    enabled: false
+    cis_ref: []
+
+  - id: iam.managed.disableAccessPolicyBinding
+    display_name: "Disable binding access policy to resource"
+    category: auto_enforced
+    type: boolean
+    default_enforce: true
+    attach_level: organization
+    folder_override_allowed: false
+    enabled: true
+    cis_ref: []
+    notes: >
+      Google 預設自動強制；顯性 codify 成 Terraform 資源以便每次 apply 都
+      重新確認/校正實際生效狀態，而非只信任預設值（drift 防護）。
+
+  - id: cloudbuild.disableCreateDefaultServiceAccount
+    display_name: "Disable Create Default Service Account (Cloud Build)"
+    category: auto_enforced
+    type: boolean
+    default_enforce: true
+    attach_level: organization
+    folder_override_allowed: false
+    enabled: true
+    cis_ref: []
+    notes: >
+      Google 預設自動強制；顯性 codify 成 Terraform 資源以便每次 apply 都
+      重新確認/校正實際生效狀態，而非只信任預設值（drift 防護）。
+
+  - id: cloudbuild.useBuildServiceAccount
+    display_name: "Use default service account (Cloud Build)"
+    category: auto_enforced
+    type: unverified
+    enabled: false
+    cis_ref: []
+
+  - id: cloudbuild.useComputeServiceAccount
+    display_name: "Use Compute Engine Service Account by Default (Cloud Build)"
+    category: auto_enforced
+    type: unverified
+    enabled: false
+    cis_ref: []
+
+  - id: compute.managed.blockPreviewFeatures
+    display_name: "Block Compute Engine Preview Features"
+    category: auto_enforced
+    type: boolean
+    default_enforce: true
+    attach_level: organization
+    folder_override_allowed: false
+    enabled: true
+    cis_ref: []
+    notes: >
+      Google 預設自動強制；顯性 codify 成 Terraform 資源以便每次 apply 都
+      重新確認/校正實際生效狀態，而非只信任預設值（drift 防護）。
+
+  - id: compute.sharedReservationsOwnerProjects
+    display_name: "Shared Reservations Owner Projects"
+    category: auto_enforced
+    type: unverified
+    enabled: false
+    cis_ref: []
+    notes: "名稱暗示為允許清單（list），值可能是 project 參照，需先核對 schema。"
+
+  - id: container.managed.autopilotPrivilegedAdmission
+    display_name: "Enable Autopilot privileged admission control"
+    category: auto_enforced
+    type: unverified
+    enabled: false
+    cis_ref: []
+
+  - id: discoveryengine.managed.allowedDataSources
+    display_name: "Restrict allowed data sources for data connectors"
+    category: auto_enforced
+    type: unverified
+    enabled: false
+    cis_ref: []
+    notes: "名稱暗示為允許清單（list），需先核對 schema。"
+
+  - id: discoveryengine.managed.allowedEgressFqdns
+    display_name: "Restrict egress domains for data connectors"
+    category: auto_enforced
+    type: unverified
+    enabled: false
+    cis_ref: []
+    notes: "名稱暗示為允許清單（list），值可能是 FQDN 字串，需先核對 schema。"
+
+  - id: discoveryengine.managed.disableCustomMcpServerConnector
+    display_name: "Disable custom MCP server connector for Gemini Enterprise"
+    category: auto_enforced
+    type: boolean
+    default_enforce: true
+    attach_level: organization
+    folder_override_allowed: false
+    enabled: true
+    cis_ref: []
+    notes: >
+      Google 預設自動強制；顯性 codify 成 Terraform 資源以便每次 apply 都
+      重新確認/校正實際生效狀態，而非只信任預設值（drift 防護）。
+
+  - id: vertexai.allowedPartnerModelFeatures
+    display_name: "Define the managed partner model's advanced features that can be used on Vertex AI"
+    category: auto_enforced
+    type: unverified
+    enabled: false
+    cis_ref: []
+    notes: "名稱暗示為允許清單（list），需先核對 schema。"
+
+  - id: resourcemanager.allowedExportDestinations
+    display_name: "Allowed export destinations"
+    category: auto_enforced
+    type: unverified
+    enabled: false
+    cis_ref: []
+    notes: "名稱暗示為允許清單（list），需先核對 schema。"
+
+  - id: resourcemanager.allowedImportSources
+    display_name: "Allowed import sources"
+    category: auto_enforced
+    type: unverified
+    enabled: false
+    cis_ref: []
+    notes: "名稱暗示為允許清單（list），需先核對 schema。"
+
+  - id: resourcemanager.allowEnabledServicesForExport
+    display_name: "Allow enabled services for export"
+    category: auto_enforced
+    type: unverified
+    enabled: false
+    cis_ref: []
+
+  - id: commerceorggovernance.marketplaceServices
+    display_name: "Restrict access on marketplace services"
+    category: auto_enforced
+    type: unverified
+    enabled: false
+    cis_ref: []
+    notes: "名稱暗示為允許/限制清單（list），需先核對 schema。"

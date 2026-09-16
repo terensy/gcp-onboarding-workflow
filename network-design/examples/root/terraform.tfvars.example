@@ -1,0 +1,26 @@
+# 複製為 terraform.tfvars 後填入貴組織的實際值，terraform.tfvars 不應提交到版控。
+
+org_id          = "123456789012"
+host_project_id = "prj-host-shared-vpc"
+
+service_project_ids = [
+  "prj-app-frontend",
+  "prj-app-backend",
+]
+
+# 對應最外層 README.md 3.1 節「選項 1：每個環境一個 Shared VPC」，這裡示範單一
+# 環境內依用途切分子網路；多環境（dev/nonprod/prod）建議整組 module 各呼叫一次。
+subnets = {
+  subnet-app-asia-east1 = {
+    region        = "asia-east1"
+    ip_cidr_range = "10.0.0.0/22"
+    secondary_ranges = {
+      gke-pods     = "10.4.0.0/14"
+      gke-services = "10.8.0.0/20"
+    }
+  }
+  subnet-data-asia-east1 = {
+    region        = "asia-east1"
+    ip_cidr_range = "10.0.4.0/22"
+  }
+}
