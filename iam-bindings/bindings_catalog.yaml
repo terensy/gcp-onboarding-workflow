@@ -1,0 +1,88 @@
+# =============================================================================
+# GCP Landing Zone — IAM 角色指派參考目錄 (bindings_catalog.yaml)
+# 對應最外層 README.md 1.2 節定義的 5 個最小必要管理群組。
+#
+# 這份檔案是 Terraform module（modules/iam_bindings）的唯一輸入資料來源。
+# 每筆 binding 的欄位意義：
+#
+#   group_key    對應 var.group_emails 的 key，實際 email 由使用端 tfvars 填入，
+#                catalog 本身不寫死任何組織的網域，維持跨組織可重用。
+#   role         要授予的 IAM 角色（predefined role，避免用 Owner/Editor/Viewer
+#                這類 basic role——Google 官方文件明確建議正式環境不要用 basic role）。
+#   scope        角色要綁在哪一層資源：
+#                  organization      綁在 GCP Organization（google_organization_iam_member）
+#                  billing_account   綁在 Cloud Billing 帳戶（google_billing_account_iam_member），
+#                                    注意 Billing 帳戶的 IAM 是獨立於 Org/Folder/Project 的
+#                                    資源階層，Billing Account Administrator 必須綁在這裡，
+#                                    綁在 organization 層級不會生效。
+#   notes        補充說明，會保留在這份文件中方便追蹤決策理由。
+# =============================================================================
+
+meta:
+  resource_types:
+    organization: google_organization_iam_member
+    billing_account: google_billing_account_iam_member
+  required_iam_role: "roles/resourcemanager.organizationAdmin（org 層級）+ roles/billing.admin（billing account 層級）"
+  principle: "全部用 predefined role 綁 Google Group，不指派給個人帳號，也不用 Owner/Editor/Viewer 這類 basic role。"
+
+bindings:
+
+  # ---------------------------------------------------------------------
+  # gcp-organization-admins@ — 管理 GCP Organization 層級設定、Folder/Project 階層
+  # ---------------------------------------------------------------------
+  - group_key: organization_admins
+    role: roles/resourcemanager.organizationAdmin
+    scope: organization
+    notes: >
+      可以管理 Folder/Project 的建立與 IAM 政策，但預設不包含存取資料的權限
+      （例如看不到 VM 內容、Bucket 資料），符合最小權限原則。
+
+  # ---------------------------------------------------------------------
+  # gcp-billing-admins@ — 管理 Billing 帳戶、預算與成本控管
+  # ---------------------------------------------------------------------
+  - group_key: billing_admins
+    role: roles/billing.admin
+    scope: billing_account
+    notes: >
+      綁在 Billing 帳戶本身而非 Organization——這兩個是獨立的資源階層。
+      這個角色可以把專案連結/解除連結到 Billing 帳戶、設定預算，但不代表
+      對專案內資源有任何存取權限。
+
+  # ---------------------------------------------------------------------
+  # gcp-network-admins@ — 管理共用網路（Shared VPC）、防火牆、混合連線
+  # ---------------------------------------------------------------------
+  - group_key: network_admins
+    role: roles/compute.networkAdmin
+    scope: organization
+    notes: "可管理網路資源（VPC、子網路、路由、VPN/Interconnect），但不能建立/刪除防火牆規則、不能讀寫 SSL 憑證。"
+
+  - group_key: network_admins
+    role: roles/compute.xpnAdmin
+    scope: organization
+    notes: "Shared VPC Admin：管理 Host Project 與 Service Project 的附加/移除關係，見 network-design/。"
+
+  # ---------------------------------------------------------------------
+  # gcp-security-admins@ — 管理 Organization Policy、IAM 稽核、Security Command Center
+  # ---------------------------------------------------------------------
+  - group_key: security_admins
+    role: roles/orgpolicy.policyAdmin
+    scope: organization
+    notes: "見 organization-policies/ 子專案，這個角色是套用該 Terraform module 的前提權限。"
+
+  - group_key: security_admins
+    role: roles/iam.securityAdmin
+    scope: organization
+    notes: "可檢視/修改任何資源的 IAM 政策、管理 IAM Deny 政策，但不能自己被排除在 Deny 政策之外——務必保留 break-glass 帳號。"
+
+  # ---------------------------------------------------------------------
+  # gcp-logging-admins@ — 管理集中式 Log sink、稽核紀錄與監控告警
+  # ---------------------------------------------------------------------
+  - group_key: logging_admins
+    role: roles/logging.configWriter
+    scope: organization
+    notes: "可建立/修改 Log Sink、Log Bucket 保留設定，見 logging/ 子專案。"
+
+  - group_key: logging_admins
+    role: roles/monitoring.admin
+    scope: organization
+    notes: "管理 Cloud Monitoring 的告警政策、儀表板、通知管道。"

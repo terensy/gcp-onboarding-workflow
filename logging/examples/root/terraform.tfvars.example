@@ -1,0 +1,12 @@
+# 複製為 terraform.tfvars 後填入貴組織的實際值，terraform.tfvars 不應提交到版控。
+
+org_id              = "123456789012"
+logging_project_id = "prj-common-logging"
+
+# 範例：只對 Cloud Storage 開 Data Access 的讀寫紀錄（法遵要求稽核誰讀了哪些
+# 物件），其餘服務維持 Google 預設（不開，BigQuery 除外一律開啟）。
+# 開啟前務必先看最外層 README.md 4.3 節的費用提醒——Data Access log 可能會
+# 讓帳單暴增，只開真的需要稽核的服務和環境。
+audit_configs = {
+  "storage.googleapis.com" = ["DATA_READ", "DATA_WRITE"]
+}

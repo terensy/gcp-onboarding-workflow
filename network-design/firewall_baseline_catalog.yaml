@@ -1,0 +1,64 @@
+# =============================================================================
+# 階層式防火牆政策 — 基準規則目錄 (firewall_baseline_catalog.yaml)
+#
+# 對應最外層 README.md 3.5 節。這份清單是
+# modules/hierarchical_firewall 的預設輸入，涵蓋 Google Security
+# Foundations Blueprint 建議「全公司都要放行」的基本規則：IAP TCP
+# forwarding、Load Balancer 健康檢查、內部 RFC 1918 流量，以及最後一條
+# catch-all 的預設全擋（micro-segmentation：預設全部擋掉，只開真的需要的流量）。
+#
+# 個別 VPC 才需要的規則（例如特定服務對外開放的 port）不要加進這份清單，
+# 應該用 Network Firewall Policy（掛在單一 VPC）另外處理，詳見
+# README.md 的說明。
+#
+# priority 數字越小，評估順序越前面（GCP 防火牆是 first-match-wins）。
+# 這裡採用的區段只是本專案的慣例，不是 Google 強制規範，可依需求調整：
+#   1000-1999   全公司基準線（本檔案收錄的規則）
+#   2000-999999 個別工作負載規則（不放在這份 catalog）
+#   2147483647  最後一條 catch-all（int32 最大值，保留給預設 deny）
+# =============================================================================
+
+rules:
+  - name: allow-iap-tcp-forwarding-ingress
+    priority: 1000
+    direction: INGRESS
+    action: allow
+    description: "Allow IAP TCP forwarding range for SSH/RDP (35.235.240.0/20)"
+    ip_ranges:
+      - "35.235.240.0/20"
+    layer4_configs:
+      - ip_protocol: tcp
+        ports: ["22", "3389"]
+
+  - name: allow-lb-health-check-ingress
+    priority: 1100
+    direction: INGRESS
+    action: allow
+    description: "Allow Google Cloud Load Balancing health check ranges"
+    ip_ranges:
+      - "35.191.0.0/16"
+      - "130.211.0.0/22"
+    layer4_configs:
+      - ip_protocol: tcp
+
+  - name: allow-internal-rfc1918-ingress
+    priority: 1200
+    direction: INGRESS
+    action: allow
+    description: "Allow internal RFC 1918 traffic between workloads"
+    ip_ranges:
+      - "10.0.0.0/8"
+      - "172.16.0.0/12"
+      - "192.168.0.0/16"
+    layer4_configs:
+      - ip_protocol: all
+
+  - name: default-deny-ingress
+    priority: 2147483647
+    direction: INGRESS
+    action: deny
+    description: "Default deny all other ingress traffic not explicitly allowed above"
+    ip_ranges:
+      - "0.0.0.0/0"
+    layer4_configs:
+      - ip_protocol: all

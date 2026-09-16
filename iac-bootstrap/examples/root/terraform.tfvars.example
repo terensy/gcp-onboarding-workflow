@@ -1,0 +1,6 @@
+# 複製為 terraform.tfvars 後填入貴組織的實際值，terraform.tfvars 不應提交到版控。
+
+seed_project_id  = "prj-b-seed"
+cicd_project_id  = "prj-b-cicd"
+state_bucket_name = "example-com-tf-state"
+github_repository = "your-org/gcp-onboarding-workflow"
