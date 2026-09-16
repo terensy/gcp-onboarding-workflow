@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64" role="img" aria-label="GCP Enterprise Landing Zone logo">
+  <rect x="6" y="40" width="52" height="6" rx="1.5" fill="#4285F4" opacity="0.25"/>
+  <rect x="6" y="49" width="52" height="6" rx="1.5" fill="#4285F4" opacity="0.15"/>
+  <path d="M20 34c-5 0-9-4-9-9s4-9 9-9c1 0 2 .1 2.9.4C24.6 12 28.5 9 33 9c6 0 11 4.6 11.6 10.5C49.8 20.3 54 24.6 54 30c0 4.5-3.6 8-8 8H20z" fill="#4285F4"/>
+</svg>

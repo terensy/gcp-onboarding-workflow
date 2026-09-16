@@ -1,0 +1,39 @@
+# GCP Enterprise Landing Zone
+
+> An enterprise-tier Google Cloud Platform (GCP) onboarding and landing zone guide, covering Cloud Identity registration, GCP Organization initialisation (folders/projects, org policies, billing, IAM), network design, centralised logging, security products (Security Command Center, VPC Service Controls, Cloud KMS, Secret Manager, Cloud Armor, Binary Authorization), backup/disaster recovery, and Infrastructure as Code bootstrapping. Content is grounded in official Google Cloud documentation and paired with runnable Terraform modules in the source repository. Available in Traditional Chinese (繁體中文, default) and British English — every page below has an English variant at the same path under `/en-GB/`.
+
+## Guide
+
+- [1. Verify domain & initialise Cloud Identity](https://terensy.github.io/gcp-onboarding-workflow/cloud-identity/verify-domain): Domain verification, super admin 2FA, break-glass emergency access accounts.
+- [1. Decide user source & build groups](https://terensy.github.io/gcp-onboarding-workflow/cloud-identity/user-groups): Identity Provider vs Cloud Identity, minimum viable admin groups.
+- [2. Create GCP folders & projects](https://terensy.github.io/gcp-onboarding-workflow/organization-setup/folders-projects): Resource hierarchy design options.
+- [2. Plan GCP Organization Policies](https://terensy.github.io/gcp-onboarding-workflow/organization-setup/organization-policies): CIS Benchmark-aligned org policy catalogue and Terraform module.
+- [2. Billing account setup & governance](https://terensy.github.io/gcp-onboarding-workflow/organization-setup/billing): Billing account roles, budgets & alerts, cost export, labels.
+- [2. IAM role bindings](https://terensy.github.io/gcp-onboarding-workflow/organization-setup/iam-bindings): Least privilege, predefined roles, policy inheritance, IAM Deny, PAM.
+- [3. Network architecture design](https://terensy.github.io/gcp-onboarding-workflow/network-design/architecture): Shared VPC vs hub-and-spoke vs Private Service Connect topology options.
+- [3. Hybrid connectivity](https://terensy.github.io/gcp-onboarding-workflow/network-design/hybrid-connectivity): Cloud VPN vs Dedicated/Partner/Cross-Cloud Interconnect comparison.
+- [3. Private access & Cloud DNS](https://terensy.github.io/gcp-onboarding-workflow/network-design/private-access-dns): Private Google Access vs Private Service Connect, centralised DNS hub design.
+- [3. Cloud NAT](https://terensy.github.io/gcp-onboarding-workflow/network-design/cloud-nat): Outbound internet access for VMs without external IPs.
+- [3. Firewall management](https://terensy.github.io/gcp-onboarding-workflow/network-design/firewall): Hierarchical firewall policy vs network firewall policy vs legacy VPC firewall rules.
+- [4. Cloud Audit Logs](https://terensy.github.io/gcp-onboarding-workflow/logging/audit-logs): Admin Activity, Data Access, System Event, Policy Denied log types and audit configs.
+- [4. Aggregated log sink](https://terensy.github.io/gcp-onboarding-workflow/logging/aggregated-sink): Centralised logging project pattern with Log Analytics, Cloud Storage and SIEM export.
+- [4. Retention policy & cost](https://terensy.github.io/gcp-onboarding-workflow/logging/retention): Log bucket retention, log bucket locking, Data Access log cost control.
+- [5. Security Command Center](https://terensy.github.io/gcp-onboarding-workflow/security-products/scc): Standard/Premium/Enterprise tiers and organisation-wide activation.
+- [5. VPC Service Controls](https://terensy.github.io/gcp-onboarding-workflow/security-products/vpc-service-controls): Service perimeters, access levels, dry-run to enforce rollout methodology.
+- [5. Cloud KMS (CMEK)](https://terensy.github.io/gcp-onboarding-workflow/security-products/kms): Customer-managed encryption keys, protection levels, org policy enforcement.
+- [5. Secret Manager](https://terensy.github.io/gcp-onboarding-workflow/security-products/secret-manager): Secret versioning, IAM access tiers, rotation notifications.
+- [5. Cloud Armor](https://terensy.github.io/gcp-onboarding-workflow/security-products/cloud-armor): WAF and DDoS protection, OWASP Core Rule Set, rate limiting.
+- [5. Binary Authorization](https://terensy.github.io/gcp-onboarding-workflow/security-products/binary-authorization): Deploy-time container image attestation.
+- [5. Assured Workloads](https://terensy.github.io/gcp-onboarding-workflow/security-products/assured-workloads): Compliance regime folders (FedRAMP, CJIS, ITAR).
+- [6. Backup & disaster recovery strategy](https://terensy.github.io/gcp-onboarding-workflow/backup-dr): Native backup features vs Backup and DR Service, RPO/RTO planning.
+- [7. Infrastructure as Code bootstrap](https://terensy.github.io/gcp-onboarding-workflow/iac-bootstrap): Terraform state bucket, Workload Identity Federation, terraform-example-foundation.
+- [8. Resource tagging & labelling strategy](https://terensy.github.io/gcp-onboarding-workflow/governance/tagging): Labels vs Tags, IAM/org policy conditions.
+- [8. Google Cloud Support Plan](https://terensy.github.io/gcp-onboarding-workflow/governance/support-plan): Basic/Standard/Enhanced/Premium tier comparison and P1 SLA.
+
+## Source code
+
+- [GitHub repository](https://github.com/terensy/gcp-onboarding-workflow): Full source, including all Terraform modules referenced throughout the guide (organization-policies, iam-bindings, network-design, logging, security-products, iac-bootstrap).
+
+## Optional
+
+- [Sitemap](https://terensy.github.io/gcp-onboarding-workflow/sitemap.xml): Machine-readable list of every page on this site, in both languages.

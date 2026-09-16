@@ -1,0 +1,54 @@
+{
+  "version.label": {
+    "message": "Next",
+    "description": "The label for version current"
+  },
+  "sidebar.guideSidebar.category.1. Cloud Identity 註冊": {
+    "message": "1. Cloud Identity registration",
+    "description": "The label for category '1. Cloud Identity 註冊' in sidebar 'guideSidebar'"
+  },
+  "sidebar.guideSidebar.category.1. Cloud Identity 註冊.link.generated-index.description": {
+    "message": "Register Cloud Identity with a single domain name — the source of your GCP Organization and super admin account.",
+    "description": "The generated-index page description for category '1. Cloud Identity 註冊' in sidebar 'guideSidebar'"
+  },
+  "sidebar.guideSidebar.category.2. Organization 初始化": {
+    "message": "2. Organization setup",
+    "description": "The label for category '2. Organization 初始化' in sidebar 'guideSidebar'"
+  },
+  "sidebar.guideSidebar.category.2. Organization 初始化.link.generated-index.description": {
+    "message": "GCP Organization-level initialisation: folder/project hierarchy, Organization Policies, billing account, IAM role bindings.",
+    "description": "The generated-index page description for category '2. Organization 初始化' in sidebar 'guideSidebar'"
+  },
+  "sidebar.guideSidebar.category.3. GCP 網路設計": {
+    "message": "3. GCP network design",
+    "description": "The label for category '3. GCP 網路設計' in sidebar 'guideSidebar'"
+  },
+  "sidebar.guideSidebar.category.3. GCP 網路設計.link.generated-index.description": {
+    "message": "Network architecture design, hybrid connectivity, private access & DNS, Cloud NAT, firewall management.",
+    "description": "The generated-index page description for category '3. GCP 網路設計' in sidebar 'guideSidebar'"
+  },
+  "sidebar.guideSidebar.category.4. Log 管理": {
+    "message": "4. Log management",
+    "description": "The label for category '4. Log 管理' in sidebar 'guideSidebar'"
+  },
+  "sidebar.guideSidebar.category.4. Log 管理.link.generated-index.description": {
+    "message": "Cloud Audit Logs, aggregated log sinks, retention policy and cost.",
+    "description": "The generated-index page description for category '4. Log 管理' in sidebar 'guideSidebar'"
+  },
+  "sidebar.guideSidebar.category.5. 安全性相關產品": {
+    "message": "5. Security products",
+    "description": "The label for category '5. 安全性相關產品' in sidebar 'guideSidebar'"
+  },
+  "sidebar.guideSidebar.category.5. 安全性相關產品.link.generated-index.description": {
+    "message": "Security Command Center, VPC Service Controls, Cloud KMS, Secret Manager, Cloud Armor, Binary Authorization, Assured Workloads.",
+    "description": "The generated-index page description for category '5. 安全性相關產品' in sidebar 'guideSidebar'"
+  },
+  "sidebar.guideSidebar.category.8. 其他治理事項": {
+    "message": "8. Other governance topics",
+    "description": "The label for category '8. 其他治理事項' in sidebar 'guideSidebar'"
+  },
+  "sidebar.guideSidebar.category.8. 其他治理事項.link.generated-index.description": {
+    "message": "Resource tagging/labelling strategy, Google Cloud Support Plan.",
+    "description": "The generated-index page description for category '8. 其他治理事項' in sidebar 'guideSidebar'"
+  }
+}

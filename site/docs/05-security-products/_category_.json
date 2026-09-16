@@ -1,0 +1,8 @@
+{
+  "label": "5. 安全性相關產品",
+  "position": 5,
+  "link": {
+    "type": "generated-index",
+    "description": "Security Command Center、VPC Service Controls、Cloud KMS、Secret Manager、Cloud Armor、Binary Authorization、Assured Workloads。"
+  }
+}

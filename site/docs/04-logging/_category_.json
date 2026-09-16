@@ -1,0 +1,8 @@
+{
+  "label": "4. Log 管理",
+  "position": 4,
+  "link": {
+    "type": "generated-index",
+    "description": "Cloud Audit Logs、集中式 Log Sink、保留政策與費用。"
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "label": "3. GCP 網路設計",
+  "position": 3,
+  "link": {
+    "type": "generated-index",
+    "description": "網路架構設計、混合雲連線、私有存取與 DNS、Cloud NAT、Firewall 管理。"
+  }
+}

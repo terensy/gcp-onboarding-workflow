@@ -1,0 +1,8 @@
+{
+  "label": "2. Organization 初始化",
+  "position": 2,
+  "link": {
+    "type": "generated-index",
+    "description": "GCP Organization 層級初始化設定：Folder/Project 階層、Organization Policies、Billing 帳戶、IAM 角色指派。"
+  }
+}
