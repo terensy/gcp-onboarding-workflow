@@ -1,5 +1,5 @@
 # =============================================================================
-# GCP Landing Zone — IAM 角色指派參考目錄 (bindings_catalog.yaml)
+# GCP IAM 角色指派參考目錄 (bindings_catalog.yaml)
 # 對應最外層 README.md 1.2 節定義的 5 個最小必要管理群組。
 #
 # 這份檔案是 Terraform module（modules/iam_bindings）的唯一輸入資料來源。

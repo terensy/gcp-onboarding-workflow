@@ -1,4 +1,4 @@
-# GCP Landing Zone — Network Design Terraform Modules
+# GCP Network Design Terraform Modules
 
 對應最外層 [README.md](../README.md#3-gcp-網路設計) 第 3 章。提供兩個獨立的 Terraform module：
 

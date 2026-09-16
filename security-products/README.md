@@ -1,4 +1,4 @@
-# GCP Landing Zone — 安全性相關產品
+# GCP 安全性相關產品
 
 對應最外層 [README.md](../README.md#5-安全性相關產品) 第 5 章。這幾個產品彼此獨立、用途也不同（加密、密鑰、WAF、部署把關……），不像 [organization-policies/](../organization-policies/) 或 [iam-bindings/](../iam-bindings/) 能用單一 catalog 驅動，所以這裡是各自獨立的範例，不是一個統一的 module。
 

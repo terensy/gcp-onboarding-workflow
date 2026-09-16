@@ -1,15 +1,15 @@
 ---
 title: 網路架構設計
-description: GCP Landing Zone 的 4 種網路拓樸選項比較——Shared VPC、Hub-and-Spoke、Private Service Connect，以及 NCC/Peering/VPN 的取捨。
+description: GCP 企業導入的 4 種網路拓樸選項比較——Shared VPC、Hub-and-Spoke、Private Service Connect，以及 NCC/Peering/VPN 的取捨。
 keywords: [Shared VPC, Hub-and-Spoke, Network Connectivity Center, GCP 網路設計]
 sidebar_position: 1
 ---
 
 # 3.1 網路架構設計
 
-網路是所有 Landing Zone 決策裡最難事後回頭改的一塊——IAM 角色設錯了改一行 binding 就好，網路架構設計錯了往往要牽動所有已經在跑的 Workload 重新規劃 CIDR、重新接防火牆規則，甚至要約時間半夜切網段。建議照 [Google 官方 Landing Zone 網路設計指南](https://docs.cloud.google.com/architecture/landing-zones/decide-network-design) 的決策框架，先想清楚再動手，不要先建一個 VPC 再說。
+網路是所有企業導入決策裡最難事後回頭改的一塊——IAM 角色設錯了改一行 binding 就好，網路架構設計錯了往往要牽動所有已經在跑的 Workload 重新規劃 CIDR、重新接防火牆規則，甚至要約時間半夜切網段。建議照 [Google 官方網路設計指南](https://docs.cloud.google.com/architecture/landing-zones/decide-network-design) 的決策框架，先想清楚再動手，不要先建一個 VPC 再說。
 
-Google 官方列出 4 種 Landing Zone 網路拓樸，依「團隊要多少自主權」與「要不要集中管控」排列：
+Google 官方列出 4 種企業網路拓樸，依「團隊要多少自主權」與「要不要集中管控」排列：
 
 | 選項 | 做法 | 適用情境 |
 | --- | --- | --- |
@@ -18,7 +18,7 @@ Google 官方列出 4 種 Landing Zone 網路拓樸，依「團隊要多少自�
 | 選項 3：Hub-and-Spoke（無設備） | Hub 只負責共用的地端連線，環境之間互相隔離 | 想讓各環境獨立、又要共用同一條專線/VPN |
 | 選項 4：Private Service Connect 生產者/消費者模式 | 每個 VPC 各自獨立，只用 PSC 端點暴露特定服務 | 團隊要完全自主，服務只透過明確定義的端點溝通 |
 
-![Landing Zone 網路架構：每個環境一個 Shared VPC](/img/diagrams/network-design-option1-shared-vpc.svg)
+![企業網路架構：每個環境一個 Shared VPC](/img/diagrams/network-design-option1-shared-vpc.svg)
 
 :::note
 沒有特殊理由的話，直接選**選項 1**。多數導入案並沒有那麼特殊，先選最簡單、Google 自己都說「多數情況適用」的方案，不要一開始就把架構往最複雜的方向設計——複雜的架構是拿來解決真的遇到的問題，不是拿來證明團隊很懂雲端。

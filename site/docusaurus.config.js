@@ -3,8 +3,8 @@ import {themes as prismThemes} from 'prism-react-renderer';
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
-  title: 'GCP Enterprise Landing Zone',
-  tagline: 'Enterprise-tier Google Cloud onboarding & landing zone guide',
+  title: 'GCP Enterprise Onboarding',
+  tagline: 'Enterprise-tier Google Cloud onboarding guide',
   favicon: 'img/favicon.svg',
 
   future: {
@@ -78,10 +78,10 @@ const config = {
       innerHTML: JSON.stringify({
         '@context': 'https://schema.org',
         '@type': 'WebSite',
-        name: 'GCP Enterprise Landing Zone',
+        name: 'GCP Enterprise Onboarding',
         url: 'https://terensy.github.io/gcp-onboarding-workflow/',
         description:
-          'An enterprise-tier Google Cloud Platform onboarding and landing zone guide covering Cloud Identity, IAM, networking, logging, security and Terraform automation.',
+          'An enterprise-tier Google Cloud Platform onboarding guide covering Cloud Identity, IAM, networking, logging, security and Terraform automation.',
         inLanguage: ['zh-Hant', 'en-GB'],
       }),
     },
@@ -91,7 +91,7 @@ const config = {
       innerHTML: JSON.stringify({
         '@context': 'https://schema.org',
         '@type': 'TechArticle',
-        about: 'Google Cloud Platform enterprise landing zone',
+        about: 'Google Cloud Platform enterprise onboarding',
         publisher: {
           '@type': 'Organization',
           name: 'terensy',
@@ -109,15 +109,15 @@ const config = {
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
       metadata: [
-        {name: 'keywords', content: 'GCP, Google Cloud, landing zone, enterprise, IAM, Terraform, org policy, onboarding'},
+        {name: 'keywords', content: 'GCP, Google Cloud, enterprise onboarding, IAM, Terraform, org policy'},
       ],
       colorMode: {
         respectPrefersColorScheme: true,
       },
       navbar: {
-        title: 'GCP Landing Zone',
+        title: 'GCP Onboarding',
         logo: {
-          alt: 'GCP Enterprise Landing Zone logo',
+          alt: 'GCP Enterprise Onboarding logo',
           src: 'img/logo.svg',
         },
         items: [

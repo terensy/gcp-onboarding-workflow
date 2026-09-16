@@ -1,15 +1,15 @@
 ---
 id: intro
-title: GCP 企業級 Landing Zone 導入指南
+title: GCP 企業級導入指南
 description: 一份從 Cloud Identity 註冊、Organization 初始化、網路設計、Log 管理到安全性產品的完整 GCP 企業級導入指南，附上可直接套用的 Terraform 模組。
-keywords: [GCP, Google Cloud, landing zone, 企業導入, Cloud Identity, Terraform, org policy]
+keywords: [GCP, Google Cloud, 企業導入, Cloud Identity, Terraform, org policy]
 sidebar_position: 0
 slug: /
 ---
 
-# GCP 企業級 Landing Zone 導入指南
+# GCP 企業級導入指南
 
-這是一份**從零開始**的 Google Cloud 企業級導入（Landing Zone）指南——從註冊 Cloud Identity、初始化 GCP Organization，到網路設計、集中式 Log 管理、安全性產品導入、Infrastructure as Code 基礎建設，涵蓋企業正式導入 GCP 時會依序遇到的每一個治理決策。
+這是一份**從零開始**的 Google Cloud 企業級導入指南——從註冊 Cloud Identity、初始化 GCP Organization，到網路設計、集中式 Log 管理、安全性產品導入、Infrastructure as Code 基礎建設，涵蓋企業正式導入 GCP 時會依序遇到的每一個治理決策。
 
 每個章節都：
 

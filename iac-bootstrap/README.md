@@ -1,8 +1,8 @@
-# GCP Landing Zone — CI/CD Bootstrap Terraform Module
+# GCP CI/CD Bootstrap Terraform Module
 
 對應最外層 [README.md](../README.md#7-infrastructure-as-code-基礎建設) 第 7 章。建立 Terraform State 用的 GCS Bucket，以及讓 CI/CD 能用 [Workload Identity Federation (WIF)](https://cloud.google.com/iam/docs/workload-identity-federation) 認證的 Service Account，不需要下載 Service Account 金鑰檔案。
 
-這是刻意精簡過的版本，只處理「State 放哪裡」「CI/CD 怎麼登入」這兩個最小必要問題。如果需要完整的多階段 Landing Zone 部署管線（Org 設定、多環境 Folder、網路、Project 各自獨立的 CI/CD Pipeline），直接採用 Google 官方的 [`terraform-example-foundation`](https://github.com/terraform-google-modules/terraform-example-foundation) 會比在這個 repo 裡重造更完整、更有人維護。
+這是刻意精簡過的版本，只處理「State 放哪裡」「CI/CD 怎麼登入」這兩個最小必要問題。如果需要完整的多階段企業導入部署管線（Org 設定、多環境 Folder、網路、Project 各自獨立的 CI/CD Pipeline），直接採用 Google 官方的 [`terraform-example-foundation`](https://github.com/terraform-google-modules/terraform-example-foundation) 會比在這個 repo 裡重造更完整、更有人維護。
 
 ## 目錄結構
 

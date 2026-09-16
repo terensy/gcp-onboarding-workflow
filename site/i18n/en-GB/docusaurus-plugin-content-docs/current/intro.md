@@ -1,15 +1,15 @@
 ---
 id: intro
-title: GCP Enterprise Landing Zone Guide
+title: GCP Enterprise Onboarding Guide
 description: A complete guide to enterprise-tier Google Cloud onboarding — from Cloud Identity registration and Organization setup through network design, centralised logging and security products — with ready-to-apply Terraform modules.
-keywords: [GCP, Google Cloud, landing zone, enterprise onboarding, Cloud Identity, Terraform, org policy]
+keywords: [GCP, Google Cloud, enterprise onboarding, Cloud Identity, Terraform, org policy]
 sidebar_position: 0
 slug: /
 ---
 
-# GCP Enterprise Landing Zone Guide
+# GCP Enterprise Onboarding Guide
 
-This is a **start-from-scratch** guide to enterprise-tier Google Cloud onboarding — a landing zone guide. It runs from registering Cloud Identity and initialising your GCP Organization, through network design, centralised log management and security product rollout, to Infrastructure as Code bootstrapping — covering every governance decision an enterprise typically faces when adopting GCP in earnest.
+This is a **start-from-scratch** guide to enterprise-tier Google Cloud onboarding. It runs from registering Cloud Identity and initialising your GCP Organization, through network design, centralised log management and security product rollout, to Infrastructure as Code bootstrapping — covering every governance decision an enterprise typically faces when adopting GCP in earnest.
 
 Every chapter:
 

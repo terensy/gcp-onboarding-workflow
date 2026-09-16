@@ -1,6 +1,6 @@
-# GCP Enterprise Landing Zone
+# GCP Enterprise Onboarding
 
-> An enterprise-tier Google Cloud Platform (GCP) onboarding and landing zone guide, covering Cloud Identity registration, GCP Organization initialisation (folders/projects, org policies, billing, IAM), network design, centralised logging, security products (Security Command Center, VPC Service Controls, Cloud KMS, Secret Manager, Cloud Armor, Binary Authorization), backup/disaster recovery, and Infrastructure as Code bootstrapping. Content is grounded in official Google Cloud documentation and paired with runnable Terraform modules in the source repository. Available in Traditional Chinese (繁體中文, default) and British English — every page below has an English variant at the same path under `/en-GB/`.
+> An enterprise-tier Google Cloud Platform (GCP) onboarding guide, covering Cloud Identity registration, GCP Organization initialisation (folders/projects, org policies, billing, IAM), network design, centralised logging, security products (Security Command Center, VPC Service Controls, Cloud KMS, Secret Manager, Cloud Armor, Binary Authorization), backup/disaster recovery, and Infrastructure as Code bootstrapping. Content is grounded in official Google Cloud documentation and paired with runnable Terraform modules in the source repository. Available in Traditional Chinese (繁體中文, default) and British English — every page below has an English variant at the same path under `/en-GB/`.
 
 ## Guide
 

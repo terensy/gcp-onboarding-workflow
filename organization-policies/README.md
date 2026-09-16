@@ -1,4 +1,4 @@
-# GCP Landing Zone — Organization Policy Terraform Module
+# GCP Organization Policy Terraform Module
 
 依 `policies_catalog.yaml` 產生 `google_org_policy_policy` 資源，對應
 CIS Google Cloud Platform Foundation Benchmark v5.0.0 建議新增的政策項目。

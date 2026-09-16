@@ -201,11 +201,11 @@ IAM 政策沿著 Organization → Folder → Project → 資源往下**繼承**�
 
 ## 3. GCP 網路設計
 
-網路是所有 Landing Zone 決策裡最難事後回頭改的一塊——IAM 角色設錯了改一行 binding 就好，網路架構設計錯了往往要牽動所有已經在跑的 Workload 重新規劃 CIDR、重新接防火牆規則，甚至要約時間半夜切網段。建議照 [Google 官方 Landing Zone 網路設計指南](https://docs.cloud.google.com/architecture/landing-zones/decide-network-design) 的決策框架，先想清楚再動手，不要先建一個 VPC 再說。
+網路是所有企業導入決策裡最難事後回頭改的一塊——IAM 角色設錯了改一行 binding 就好，網路架構設計錯了往往要牽動所有已經在跑的 Workload 重新規劃 CIDR、重新接防火牆規則，甚至要約時間半夜切網段。建議照 [Google 官方網路設計指南](https://docs.cloud.google.com/architecture/landing-zones/decide-network-design) 的決策框架，先想清楚再動手，不要先建一個 VPC 再說。
 
 ### 3.1 網路架構設計
 
-Google 官方列出 4 種 Landing Zone 網路拓樸，依「團隊要多少自主權」與「要不要集中管控」排列：
+Google 官方列出 4 種企業網路拓樸，依「團隊要多少自主權」與「要不要集中管控」排列：
 
 | 選項 | 做法 | 適用情境 |
 |---|---|---|
@@ -214,7 +214,7 @@ Google 官方列出 4 種 Landing Zone 網路拓樸，依「團隊要多少自�
 | 選項 3：Hub-and-Spoke（無設備） | Hub 只負責共用的地端連線，環境之間互相隔離 | 想讓各環境獨立、又要共用同一條專線/VPN |
 | 選項 4：Private Service Connect 生產者/消費者模式 | 每個 VPC 各自獨立，只用 PSC 端點暴露特定服務 | 團隊要完全自主，服務只透過明確定義的端點溝通 |
 
-![Landing Zone 網路架構：每個環境一個 Shared VPC](images/network-design-option1-shared-vpc.svg)
+![企業網路架構：每個環境一個 Shared VPC](images/network-design-option1-shared-vpc.svg)
 
 > [!NOTE]
 > 沒有特殊理由的話，直接選**選項 1**。多數導入案並沒有那麼特殊，先選最簡單、Google 自己都說「多數情況適用」的方案，不要一開始就把架構往最複雜的方向設計——複雜的架構是拿來解決真的遇到的問題，不是拿來證明團隊很懂雲端。
@@ -452,7 +452,7 @@ L3/L4 的 DDoS 防護是自動、免費、不用設定就有；L7（例如 HTTP 
 > [!WARNING]
 > Service Account 的 JSON 金鑰檔案是長期有效的憑證，外洩了在被發現、撤銷之前都能一直用——[Google 官方最佳實務](https://docs.cloud.google.com/iam/docs/best-practices-for-managing-service-account-keys) 列出的風險包含憑證外洩、權限提升、行為不可追溯（沒辦法證明是誰用了這把金鑰做的事）。結論原文：「避免使用者自行管理的 Service Account 金鑰，盡可能改用其他驗證方式」。GitHub Actions/GitLab CI 這類外部 CI/CD 平台，改用 WIF 讓 Pipeline 用短期、動態換發的憑證登入 GCP，從根本上不會有「金鑰檔案外洩」這個攻擊面。
 
-本專案的 CI/CD Bootstrap（State Bucket + WIF Pool）見 [iac-bootstrap/](iac-bootstrap/) 子專案；如果要完整參照 Google 官方的多階段 Landing Zone 部署管線，直接採用 [`terraform-example-foundation`](https://github.com/terraform-google-modules/terraform-example-foundation) 會比自己從零重造更省力。
+本專案的 CI/CD Bootstrap（State Bucket + WIF Pool）見 [iac-bootstrap/](iac-bootstrap/) 子專案；如果要完整參照 Google 官方的多階段企業導入部署管線，直接採用 [`terraform-example-foundation`](https://github.com/terraform-google-modules/terraform-example-foundation) 會比自己從零重造更省力。
 
 <br>
 

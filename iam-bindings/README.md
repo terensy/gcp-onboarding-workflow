@@ -1,4 +1,4 @@
-# GCP Landing Zone — IAM 角色指派 Terraform Module
+# GCP IAM 角色指派 Terraform Module
 
 依 `bindings_catalog.yaml` 產生 `google_organization_iam_member` /
 `google_billing_account_iam_member` 資源，把最外層 [README.md](../README.md#12-決定-user-來源--建立群組與人員)

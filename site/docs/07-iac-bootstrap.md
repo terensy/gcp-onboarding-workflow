@@ -28,4 +28,4 @@ sidebar_position: 7
 Service Account 的 JSON 金鑰檔案是長期有效的憑證，外洩了在被發現、撤銷之前都能一直用——[Google 官方最佳實務](https://docs.cloud.google.com/iam/docs/best-practices-for-managing-service-account-keys) 列出的風險包含憑證外洩、權限提升、行為不可追溯（沒辦法證明是誰用了這把金鑰做的事）。結論原文：「避免使用者自行管理的 Service Account 金鑰，盡可能改用其他驗證方式」。GitHub Actions/GitLab CI 這類外部 CI/CD 平台，改用 WIF 讓 Pipeline 用短期、動態換發的憑證登入 GCP，從根本上不會有「金鑰檔案外洩」這個攻擊面。
 :::
 
-本專案的 CI/CD Bootstrap（State Bucket + WIF Pool）見 [`iac-bootstrap/`](https://github.com/terensy/gcp-onboarding-workflow/tree/main/iac-bootstrap) 子專案；如果要完整參照 Google 官方的多階段 Landing Zone 部署管線，直接採用 [`terraform-example-foundation`](https://github.com/terraform-google-modules/terraform-example-foundation) 會比自己從零重造更省力。
+本專案的 CI/CD Bootstrap（State Bucket + WIF Pool）見 [`iac-bootstrap/`](https://github.com/terensy/gcp-onboarding-workflow/tree/main/iac-bootstrap) 子專案；如果要完整參照 Google 官方的多階段企業導入部署管線，直接採用 [`terraform-example-foundation`](https://github.com/terraform-google-modules/terraform-example-foundation) 會比自己從零重造更省力。

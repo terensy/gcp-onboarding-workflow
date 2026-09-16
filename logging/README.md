@@ -1,4 +1,4 @@
-# GCP Landing Zone — 集中式 Logging Terraform Module
+# GCP 集中式 Logging Terraform Module
 
 對應最外層 [README.md](../README.md#4-log-管理) 第 4 章。在指定的 Logging Project 裡建立 Log Analytics Bucket、長期保存用的 Cloud Storage Bucket，並把 Organization 層級的 Aggregated Sink 接過去，另外處理 Data Access Audit Log 的開關。
 

@@ -1,5 +1,5 @@
 # =============================================================================
-# GCP Landing Zone — Organization Policy 參考目錄 (policies_catalog.yaml)
+# GCP Organization Policy 參考目錄 (policies_catalog.yaml)
 # 對應 CIS Google Cloud Platform Foundation Benchmark v5.0.0
 #
 # 這份檔案是 Terraform module（modules/org_policies）的唯一輸入資料來源。

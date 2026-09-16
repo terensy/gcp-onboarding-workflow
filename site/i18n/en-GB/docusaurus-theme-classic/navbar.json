@@ -1,10 +1,10 @@
 {
   "title": {
-    "message": "GCP Landing Zone",
+    "message": "GCP Onboarding",
     "description": "The title in the navbar"
   },
   "logo.alt": {
-    "message": "GCP Enterprise Landing Zone logo",
+    "message": "GCP Enterprise Onboarding logo",
     "description": "The alt text of navbar logo"
   },
   "item.label.Guide": {

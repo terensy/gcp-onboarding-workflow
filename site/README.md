@@ -1,4 +1,4 @@
-# GCP Enterprise Landing Zone — Docs Site
+# GCP Enterprise Onboarding — Docs Site
 
 Bilingual (Traditional Chinese / British English) Docusaurus site for the guide in this repository's root [README.md](../README.md), published to GitHub Pages at <https://terensy.github.io/gcp-onboarding-workflow/>.
 
