@@ -1,0 +1,50 @@
+{
+  "link.title.Guide": {
+    "message": "Guide",
+    "description": "The title of the footer links column with title=Guide in the footer"
+  },
+  "link.title.Terraform modules": {
+    "message": "Terraform modules",
+    "description": "The title of the footer links column with title=Terraform modules in the footer"
+  },
+  "link.title.More": {
+    "message": "More",
+    "description": "The title of the footer links column with title=More in the footer"
+  },
+  "link.item.label.Cloud Identity": {
+    "message": "Cloud Identity",
+    "description": "The label of footer link with label=Cloud Identity linking to /cloud-identity/verify-domain"
+  },
+  "link.item.label.Organization Setup": {
+    "message": "Organization Setup",
+    "description": "The label of footer link with label=Organization Setup linking to /organization-setup/folders-projects"
+  },
+  "link.item.label.Network Design": {
+    "message": "Network Design",
+    "description": "The label of footer link with label=Network Design linking to /network-design/architecture"
+  },
+  "link.item.label.organization-policies": {
+    "message": "organization-policies",
+    "description": "The label of footer link with label=organization-policies linking to https://github.com/terensy/gcp-onboarding-workflow/tree/main/organization-policies"
+  },
+  "link.item.label.network-design": {
+    "message": "network-design",
+    "description": "The label of footer link with label=network-design linking to https://github.com/terensy/gcp-onboarding-workflow/tree/main/network-design"
+  },
+  "link.item.label.security-products": {
+    "message": "security-products",
+    "description": "The label of footer link with label=security-products linking to https://github.com/terensy/gcp-onboarding-workflow/tree/main/security-products"
+  },
+  "link.item.label.GitHub Repository": {
+    "message": "GitHub Repository",
+    "description": "The label of footer link with label=GitHub Repository linking to https://github.com/terensy/gcp-onboarding-workflow"
+  },
+  "link.item.label.llms.txt": {
+    "message": "llms.txt",
+    "description": "The label of footer link with label=llms.txt linking to pathname:///llms.txt"
+  },
+  "copyright": {
+    "message": "Copyright © 2026 terensy. Built with Docusaurus.",
+    "description": "The footer copyright"
+  }
+}

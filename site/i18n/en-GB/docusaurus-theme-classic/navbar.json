@@ -1,0 +1,18 @@
+{
+  "title": {
+    "message": "GCP Landing Zone",
+    "description": "The title in the navbar"
+  },
+  "logo.alt": {
+    "message": "GCP Enterprise Landing Zone logo",
+    "description": "The alt text of navbar logo"
+  },
+  "item.label.Guide": {
+    "message": "Guide",
+    "description": "Navbar item with label Guide"
+  },
+  "item.label.GitHub": {
+    "message": "GitHub",
+    "description": "Navbar item with label GitHub"
+  }
+}
