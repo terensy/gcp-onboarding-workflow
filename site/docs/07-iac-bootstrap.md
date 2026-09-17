@@ -1,5 +1,5 @@
 ---
-title: Infrastructure as Code 基礎建設
+title: 7. Infrastructure as Code 基礎建設
 description: 用 Workload Identity Federation 取代 Service Account 金鑰檔案，以及 Terraform State 的版本控制與 CI/CD Bootstrap 模式。
 keywords: [Terraform State, Workload Identity Federation, WIF, CI/CD, terraform-example-foundation]
 sidebar_position: 7

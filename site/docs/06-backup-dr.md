@@ -1,5 +1,5 @@
 ---
-title: 備份與災難復原策略
+title: 6. 備份與災難復原策略
 description: 原生服務內建備份機制 vs. Backup and DR Service 的取捨，以及 RPO/RTO 規劃的成本邏輯。
 keywords: [Backup and DR, RPO, RTO, 災難復原, Persistent Disk 快照]
 sidebar_position: 6
