@@ -3,7 +3,7 @@
 > [!TIP]
 > **中小型企業第一次導入 GCP？** 這份文件是完整的企業級導入流程，涵蓋多環境、完整合規政策等大型企業才需要的複雜度。如果只需要一套「不做會出事、做了成本可控」的最小可用架構，直接看 [sme-quickstart/](sme-quickstart/)——精簡版 Terraform，一次 `terraform apply` 佈出 Folder/Project、Organization Policies 子集、IAM、Shared VPC（含選用的 VPN）、集中稽核 Logging，且升級路徑直接沿用本文件底下各章節的企業版子專案，不需要重寫架構。
 >
-> **導入範圍包含 AI/ML workload（Vertex AI、Gemini Enterprise）？** 額外的治理與護欄（Model Garden 白名單、Model Armor、Sensitive Data Protection 等）見 [ai-onboarding/](ai-onboarding/)——目前仍在建置中，部分項目已有可用的 Terraform，其餘仍是規劃階段，套用前請先看該文件的「現況總覽」確認每一項的實際狀態。
+> **導入範圍包含 AI/ML workload（Vertex AI、Gemini Enterprise）？** 額外的治理與護欄見 [ai-onboarding/](ai-onboarding/)——Model Garden 白名單、Model Armor 語義層防護、Sensitive Data Protection，可直接套用的 Terraform module；目前的覆蓋範圍跟明確排除項目見該文件的「涵蓋範圍」與「不在這個子專案範圍內」。
 
 ## 目錄
 
