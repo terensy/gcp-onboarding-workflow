@@ -156,6 +156,10 @@ const config = {
                 label: 'Network Design',
                 to: '/network-design/architecture',
               },
+              {
+                label: 'SME Quickstart',
+                to: '/sme-quickstart/overview',
+              },
             ],
           },
           {
@@ -172,6 +176,10 @@ const config = {
               {
                 label: 'security-products',
                 href: 'https://github.com/terensy/gcp-onboarding-workflow/tree/main/security-products',
+              },
+              {
+                label: 'sme-quickstart',
+                href: 'https://github.com/terensy/gcp-onboarding-workflow/tree/main/sme-quickstart',
               },
             ],
           },

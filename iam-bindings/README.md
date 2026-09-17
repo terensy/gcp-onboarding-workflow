@@ -18,6 +18,9 @@
    module 直接讀最外層 README 1.2 節定義的群組，兩份資料只要有一份改了就會
    在 `terraform plan` 階段被看見。
 
+> [!NOTE]
+> 這個 module 也被 [sme-quickstart/](../sme-quickstart/) 直接引用，5 個管理群組原封不動沿用，不需要為中小企業版本另外簡化。
+
 ## 目錄結構
 
 ```

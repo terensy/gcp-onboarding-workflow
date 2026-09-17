@@ -23,6 +23,10 @@
     "message": "Network Design",
     "description": "The label of footer link with label=Network Design linking to /network-design/architecture"
   },
+  "link.item.label.SME Quickstart": {
+    "message": "SME Quickstart",
+    "description": "The label of footer link with label=SME Quickstart linking to /sme-quickstart"
+  },
   "link.item.label.organization-policies": {
     "message": "organization-policies",
     "description": "The label of footer link with label=organization-policies linking to https://github.com/terensy/gcp-onboarding-workflow/tree/main/organization-policies"
@@ -34,6 +38,10 @@
   "link.item.label.security-products": {
     "message": "security-products",
     "description": "The label of footer link with label=security-products linking to https://github.com/terensy/gcp-onboarding-workflow/tree/main/security-products"
+  },
+  "link.item.label.sme-quickstart": {
+    "message": "sme-quickstart",
+    "description": "The label of footer link with label=sme-quickstart linking to https://github.com/terensy/gcp-onboarding-workflow/tree/main/sme-quickstart"
   },
   "link.item.label.GitHub Repository": {
     "message": "GitHub Repository",

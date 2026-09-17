@@ -10,6 +10,9 @@ CIS Google Cloud Platform Foundation Benchmark v5.0.0 建議新增的政策項�
 什麼」，而不是把 CIS 建議照單全收，見
 [docs/methodology.md](docs/methodology.md)。
 
+> [!NOTE]
+> 這個 module 也被 [sme-quickstart/](../sme-quickstart/) 直接引用——中小企業版本不用完整 33 條 catalog，而是用 `enabled_policy_ids` 白名單只套用其中 8 條，catalog 本身不用另外複製一份。
+
 ## 目錄結構
 
 ```
