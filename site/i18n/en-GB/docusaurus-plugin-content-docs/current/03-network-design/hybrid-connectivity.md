@@ -19,3 +19,5 @@ Enterprises adopting GCP almost always go through a period of "on-premises plus 
 :::tip
 The general rule: start cheap with Cloud VPN, and only move to Interconnect once you genuinely need the throughput and can commit to a colocation arrangement. Don't let a sales conversation talk you into an expensive Dedicated Interconnect contract before your actual usage is anywhere near it.
 :::
+
+The actual Cloud VPN (HA VPN) Terraform lives in [`network-design/modules/cloud_vpn`](https://github.com/terensy/gcp-onboarding-workflow/tree/main/network-design/modules/cloud_vpn) — an **optional** module; `examples/root` gates its creation with the `enable_vpn` flag, which defaults to `false`. Organisations with no hybrid-cloud requirement can skip it entirely and no VPN resources are created; only flip `enable_vpn = true` and fill in the on-premises device's ASN/IP/BGP settings once you actually need on-premises connectivity. Dedicated/Partner/Cross-Cloud Interconnect require a physical circuit provisioning process that Terraform alone can't complete, so there's no corresponding module here.

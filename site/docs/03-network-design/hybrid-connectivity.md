@@ -19,3 +19,5 @@ sidebar_position: 2
 :::tip
 大原則：便宜方案先上 Cloud VPN，真的要衝量、且合約談得動機房代管，才進場談 Interconnect。不要一開始就簽下昂貴的 Dedicated Interconnect 合約，結果用量連零頭都不到。
 :::
+
+Cloud VPN（HA VPN）的實際 Terraform 見 [network-design/modules/cloud_vpn](https://github.com/terensy/gcp-onboarding-workflow/tree/main/network-design/modules/cloud_vpn)——這是**選用**的 module，`examples/root` 用 `enable_vpn` 開關控制是否建立，預設 `false`：沒有混合雲需求的組織可以完全略過，不會產生任何 VPN 相關資源；確定要接地端才把 `enable_vpn = true` 打開並填地端設備的 ASN/IP/BGP 設定。Dedicated/Partner/Cross-Cloud Interconnect 需要走實體線路申請流程，不是單靠 Terraform 就能生效，這裡沒有對應 module。

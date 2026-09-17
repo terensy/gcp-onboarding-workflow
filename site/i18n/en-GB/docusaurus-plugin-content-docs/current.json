@@ -51,13 +51,13 @@
     "message": "Resource tagging/labelling strategy, Google Cloud Support Plan.",
     "description": "The generated-index page description for category '8. 其他治理事項' in sidebar 'guideSidebar'"
   },
-  "sidebar.guideSidebar.category.9. SMB 快速佈建": {
-    "message": "9. SMB quickstart",
-    "description": "The label for category '9. SMB 快速佈建' in sidebar 'guideSidebar'"
+  "sidebar.guideSidebar.category.9. SME 快速佈建": {
+    "message": "9. SME quickstart",
+    "description": "The label for category '9. SME 快速佈建' in sidebar 'guideSidebar'"
   },
-  "sidebar.guideSidebar.category.9. SMB 快速佈建.link.generated-index.description": {
+  "sidebar.guideSidebar.category.9. SME 快速佈建.link.generated-index.description": {
     "message": "A trimmed-down Terraform bundle for small/medium businesses onboarding to GCP for the first time: one terraform apply provisions folders/projects, an Organization Policy subset, IAM, a Shared VPC (with optional VPN), and centralised audit logging.",
-    "description": "The generated-index page description for category '9. SMB 快速佈建' in sidebar 'guideSidebar'"
+    "description": "The generated-index page description for category '9. SME 快速佈建' in sidebar 'guideSidebar'"
   },
   "sidebar.guideSidebar.category.10. AI 基礎設施導入": {
     "message": "10. AI infrastructure onboarding",

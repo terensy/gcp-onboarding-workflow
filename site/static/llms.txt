@@ -1,6 +1,6 @@
 # GCP Enterprise Onboarding
 
-> An enterprise-tier Google Cloud Platform (GCP) onboarding guide, covering Cloud Identity registration, GCP Organization initialisation (folders/projects, org policies, billing, IAM), network design, centralised logging, security products (Security Command Center, VPC Service Controls, Cloud KMS, Secret Manager, Cloud Armor, Binary Authorization), backup/disaster recovery, and Infrastructure as Code bootstrapping. Content is grounded in official Google Cloud documentation and paired with runnable Terraform modules in the source repository. Available in Traditional Chinese (繁體中文, default) and British English — every page below has an English variant at the same path under `/en-GB/`.
+> An enterprise-tier Google Cloud Platform (GCP) onboarding guide, covering Cloud Identity registration, GCP Organization initialisation (folders/projects, org policies, billing, IAM), network design, centralised logging, security products (Security Command Center, VPC Service Controls, Cloud KMS, Secret Manager, Cloud Armor, Binary Authorization), backup/disaster recovery, and Infrastructure as Code bootstrapping, plus supplementary governance topics, an SME quickstart path, and AI/ML workload onboarding guidance. Content is grounded in official Google Cloud documentation and paired with runnable Terraform modules in the source repository. Available in Traditional Chinese (繁體中文, default) and British English — every page below has an English variant at the same path under `/en-GB/`.
 
 ## Guide
 
@@ -30,7 +30,7 @@
 - [8. Resource tagging & labelling strategy](https://terensy.github.io/gcp-onboarding-workflow/governance/tagging): Labels vs Tags, IAM/org policy conditions.
 - [8. Google Cloud Support Plan](https://terensy.github.io/gcp-onboarding-workflow/governance/support-plan): Basic/Standard/Enhanced/Premium tier comparison and P1 SLA.
 - [9. SME quickstart](https://terensy.github.io/gcp-onboarding-workflow/sme-quickstart/overview): Trimmed-down Terraform stack for first-time SME onboarding — folders/projects, an org policy subset, IAM, Shared VPC with optional HA VPN, and a dedicated logging project.
-- [10. AI infrastructure onboarding](https://terensy.github.io/gcp-onboarding-workflow/ai-onboarding/overview): Governance and guardrails for AI/ML workloads (Vertex AI, Gemini Enterprise) layered on the core onboarding — Model Garden allow-listing, Model Armor, Sensitive Data Protection; still under active construction.
+- [10. AI infrastructure onboarding](https://terensy.github.io/gcp-onboarding-workflow/ai-onboarding/overview): Governance and guardrails for AI/ML workloads (Vertex AI, Gemini Enterprise) layered on the core onboarding — Model Garden allow-listing, Model Armor, Sensitive Data Protection.
 
 ## Source code
 
