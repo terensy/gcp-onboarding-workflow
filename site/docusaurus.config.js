@@ -160,6 +160,10 @@ const config = {
                 label: 'SME Quickstart',
                 to: '/sme-quickstart/overview',
               },
+              {
+                label: 'AI Onboarding',
+                to: '/ai-onboarding/overview',
+              },
             ],
           },
           {
@@ -180,6 +184,10 @@ const config = {
               {
                 label: 'sme-quickstart',
                 href: 'https://github.com/terensy/gcp-onboarding-workflow/tree/main/sme-quickstart',
+              },
+              {
+                label: 'ai-onboarding',
+                href: 'https://github.com/terensy/gcp-onboarding-workflow/tree/main/ai-onboarding',
               },
             ],
           },

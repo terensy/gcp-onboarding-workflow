@@ -58,5 +58,13 @@
   "sidebar.guideSidebar.category.9. SMB 快速佈建.link.generated-index.description": {
     "message": "A trimmed-down Terraform bundle for small/medium businesses onboarding to GCP for the first time: one terraform apply provisions folders/projects, an Organization Policy subset, IAM, a Shared VPC (with optional VPN), and centralised audit logging.",
     "description": "The generated-index page description for category '9. SMB 快速佈建' in sidebar 'guideSidebar'"
+  },
+  "sidebar.guideSidebar.category.10. AI 基礎設施導入": {
+    "message": "10. AI infrastructure onboarding",
+    "description": "The label for category '10. AI 基礎設施導入' in sidebar 'guideSidebar'"
+  },
+  "sidebar.guideSidebar.category.10. AI 基礎設施導入.link.generated-index.description": {
+    "message": "Governance and guardrails to layer on top of the core enterprise onboarding for AI/ML workloads (Vertex AI, Gemini Enterprise): Model Garden allow-listing, Model Armor semantic-layer protection, Sensitive Data Protection.",
+    "description": "The generated-index page description for category '10. AI 基礎設施導入' in sidebar 'guideSidebar'"
   }
 }

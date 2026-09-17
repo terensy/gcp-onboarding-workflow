@@ -14,7 +14,7 @@ sidebar_position: 1
 | 章節 | 有做 | 沒做（之後有需要再加） |
 | --- | --- | --- |
 | [Folder/Project](/organization-setup/folders-projects) | 兩個 Folder：`network`（Shared VPC Host Project）、`service`（Workload Project）；集中稽核用的 Logging Project 直接掛 Organization | 多環境（dev/nonprod/prod）或子公司分層 |
-| [Organization Policies](/organization-setup/organization-policies) | 精選 8 條投報率最高的政策（禁對外分享網域、禁 SA 金鑰、禁 VM 外部 IP、禁預設網路、強制 OS Login、Bucket 統一層級存取、限制 SQL 對外 IP、限制資源地區） | 完整 33 條 CIS Benchmark catalog |
+| [Organization Policies](/organization-setup/organization-policies) | 精選 8 條投報率最高的政策（禁對外分享網域、禁 SA 金鑰、禁 VM 外部 IP、禁預設網路、強制 OS Login、Bucket 統一層級存取、限制 SQL 對外 IP、限制資源地區） | 完整 35 條 catalog（含 CIS Benchmark 與 AI/Vertex AI 專屬延伸建議） |
 | [IAM](/organization-setup/iam-bindings) | 5 個最小必要管理群組，綁在 Organization/Billing 層級 | （本來就輕量，跟企業版一致） |
 | [網路](/network-design/architecture) | Shared VPC + 階層式防火牆基準線 | [混合雲連線](/network-design/hybrid-connectivity)預設關閉，見下方「可選：VPN」 |
 | [Logging](/logging/aggregated-sink) | 獨立 Logging Project + Organization 層級 Aggregated Sink，只開 Cloud Storage 歸檔 | Log Analytics（BigQuery 即時查詢）、Pub/Sub 轉 SIEM、[Data Access Audit Log](/logging/audit-logs) |
