@@ -29,6 +29,7 @@
 - [7. Infrastructure as Code bootstrap](https://terensy.github.io/gcp-onboarding-workflow/iac-bootstrap): Terraform state bucket, Workload Identity Federation, terraform-example-foundation.
 - [8. Resource tagging & labelling strategy](https://terensy.github.io/gcp-onboarding-workflow/governance/tagging): Labels vs Tags, IAM/org policy conditions.
 - [8. Google Cloud Support Plan](https://terensy.github.io/gcp-onboarding-workflow/governance/support-plan): Basic/Standard/Enhanced/Premium tier comparison and P1 SLA.
+- [9. SME quickstart](https://terensy.github.io/gcp-onboarding-workflow/sme-quickstart/overview): Trimmed-down Terraform stack for first-time SME onboarding — folders/projects, an org policy subset, IAM, Shared VPC with optional HA VPN, and a dedicated logging project.
 
 ## Source code
 

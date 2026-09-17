@@ -1,6 +1,16 @@
 # 複製為 terraform.tfvars 後填入貴組織的實際值，terraform.tfvars 不應提交到版控。
 
-org_id          = "123456789012"
+org_id             = "123456789012"
+domain             = "example.com"
+billing_account_id = "012345-6789AB-CDEF01"
+
+labels = {
+  team = "platform"
+}
+
+# ---------------------------------------------------------------------------
+# 2.1 Folder / Project
+# ---------------------------------------------------------------------------
 host_project_id = "prj-host-shared-vpc"
 
 service_project_ids = [
@@ -8,8 +18,18 @@ service_project_ids = [
   "prj-app-backend",
 ]
 
-# 對應最外層 README.md 3.1 節「選項 1：每個環境一個 Shared VPC」，這裡示範單一
-# 環境內依用途切分子網路；多環境（dev/nonprod/prod）建議整組 module 各呼叫一次。
+logging_project_id = "prj-logging"
+
+# ---------------------------------------------------------------------------
+# 2.2 Organization Policies —— enabled_policy_ids 已有 SME 預設子集（見
+# variables.tf），一般不需要調整；這裡只要填兩個 list 型政策實際要用的值。
+# ---------------------------------------------------------------------------
+allowed_customer_ids       = ["C0xxxxxxx"]
+allowed_resource_locations = ["in:asia-east1-locations"]
+
+# ---------------------------------------------------------------------------
+# 3. 網路設計
+# ---------------------------------------------------------------------------
 subnets = {
   subnet-app-asia-east1 = {
     region        = "asia-east1"
@@ -28,7 +48,7 @@ subnets = {
 # ---------------------------------------------------------------------------
 # Cloud VPN（HA VPN）——沒有混合雲需求時整段留著註解即可，enable_vpn 預設 false。
 # 要接地端網路時取消註解、填入實際值：shared_secret 建議另外用
-# TF_VAR_vpn_tunnels 環境變數或 Secret Manager 帶入，不要明文寫進這個檔案。
+# TF_VAR_vpn_tunnel_shared_secrets 環境變數帶入，不要明文寫進這個檔案。
 # ---------------------------------------------------------------------------
 # enable_vpn        = true
 # vpn_region        = "asia-east1"

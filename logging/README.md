@@ -2,6 +2,9 @@
 
 對應最外層 [README.md](../README.md#4-log-管理) 第 4 章。在指定的 Logging Project 裡建立 Log Analytics Bucket、長期保存用的 Cloud Storage Bucket，並把 Organization 層級的 Aggregated Sink 接過去，另外處理 Data Access Audit Log 的開關。
 
+> [!NOTE]
+> 這個 module 也被 [sme-quickstart/](../sme-quickstart/) 直接引用——中小企業版本只開 `enable_storage_archive_sink`（Cloud Storage 歸檔），`enable_analytics_sink`（BigQuery）跟 `pubsub_siem_topic_name`（SIEM 轉送）都關閉，成本最低。Logging Project 本身則由 `sme-quickstart/modules/resource_hierarchy` 建立，直接掛 Organization、不放進任何 Folder。
+
 ## 目錄結構
 
 ```

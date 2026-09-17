@@ -1,5 +1,8 @@
 # Google Cloud Enterprise-Tier Onboarding Workflow
 
+> [!TIP]
+> **中小型企業第一次導入 GCP？** 這份文件是完整的企業級導入流程，涵蓋多環境、完整合規政策等大型企業才需要的複雜度。如果只需要一套「不做會出事、做了成本可控」的最小可用架構，直接看 [sme-quickstart/](sme-quickstart/)——精簡版 Terraform，一次 `terraform apply` 佈出 Folder/Project、Organization Policies 子集、IAM、Shared VPC（含選用的 VPN）、集中稽核 Logging，且升級路徑直接沿用本文件底下各章節的企業版子專案，不需要重寫架構。
+
 ## 目錄
 
 - [1. 使用一個 Domain name 註冊 Cloud Identity](#1-使用一個-domain-name-註冊-cloud-identity)
@@ -244,6 +247,8 @@ Google 官方列出 4 種企業網路拓樸，依「團隊要多少自主權」�
 
 > [!TIP]
 > 大原則：便宜方案先上 Cloud VPN，真的要衝量、且合約談得動機房代管，才進場談 Interconnect。不要一開始就被銷售說服簽下昂貴的 Dedicated Interconnect 合約，結果用量連零頭都不到。
+
+Cloud VPN（HA VPN）的實際 Terraform 見 [network-design/modules/cloud_vpn](network-design/modules/cloud_vpn)——這是**選用**的 module，`examples/root` 用 `enable_vpn` 開關控制是否建立，預設 `false`：沒有混合雲需求的組織可以完全略過，不會產生任何 VPN 相關資源；確定要接地端才把 `enable_vpn = true` 打開並填地端設備的 ASN/IP/BGP 設定。Dedicated/Partner/Cross-Cloud Interconnect 需要走實體線路申請流程，不是單靠 Terraform 就能生效，這裡沒有對應 module。
 
 ### 3.3 私有存取與 Cloud DNS
 

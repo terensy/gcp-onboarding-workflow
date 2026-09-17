@@ -4,6 +4,9 @@
 
 這是刻意精簡過的版本，只處理「State 放哪裡」「CI/CD 怎麼登入」這兩個最小必要問題。如果需要完整的多階段企業導入部署管線（Org 設定、多環境 Folder、網路、Project 各自獨立的 CI/CD Pipeline），直接採用 Google 官方的 [`terraform-example-foundation`](https://github.com/terraform-google-modules/terraform-example-foundation) 會比在這個 repo 裡重造更完整、更有人維護。
 
+> [!TIP]
+> 中小企業第一次導入、只需要基本架構的話，建議先完成這裡的 Bootstrap，再去跑 [sme-quickstart/](../sme-quickstart/) 的 `terraform apply`，把 State 跟 CI/CD 憑證從一開始就放對位置。
+
 ## 目錄結構
 
 ```

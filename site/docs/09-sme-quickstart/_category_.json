@@ -1,0 +1,8 @@
+{
+  "label": "9. SMB 快速佈建",
+  "position": 9,
+  "link": {
+    "type": "generated-index",
+    "description": "給第一次導入 GCP 的中小型企業用的精簡版 Terraform：一次 apply 佈出 Folder/Project、Organization Policies 子集、IAM、Shared VPC、集中稽核 Logging。"
+  }
+}

@@ -34,6 +34,7 @@ Start from [1. Verify domain & initialise Cloud Identity](/cloud-identity/verify
 - [6. Backup & disaster recovery strategy](/backup-dr)
 - [7. Infrastructure as Code bootstrap](/iac-bootstrap)
 - [8. Other governance topics](/governance/tagging): tagging/labelling, Support Plan
+- [9. SME quickstart](/sme-quickstart/overview): just need a minimal baseline? Start here
 
 ## Source code and Terraform modules
 

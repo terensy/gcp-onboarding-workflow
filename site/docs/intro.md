@@ -34,6 +34,7 @@ slug: /
 - [6. 備份與災難復原策略](/backup-dr)
 - [7. Infrastructure as Code 基礎建設](/iac-bootstrap)
 - [8. 其他治理事項](/governance/tagging)：Tagging/Labeling、Support Plan
+- [9. SMB 快速佈建](/sme-quickstart/overview)：只需要最小可用架構？從這裡開始
 
 ## 原始碼與 Terraform 模組
 
