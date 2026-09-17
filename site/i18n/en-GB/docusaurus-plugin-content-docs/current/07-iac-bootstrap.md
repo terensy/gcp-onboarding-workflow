@@ -1,5 +1,5 @@
 ---
-title: Infrastructure as Code bootstrap
+title: 7. Infrastructure as Code bootstrap
 description: Replace Service Account key files with Workload Identity Federation, plus Terraform state version control and CI/CD bootstrap patterns.
 keywords: [Terraform state, Workload Identity Federation, WIF, CI/CD, terraform-example-foundation]
 sidebar_position: 7

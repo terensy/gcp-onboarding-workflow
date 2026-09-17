@@ -1,5 +1,5 @@
 ---
-title: Backup and disaster recovery strategy
+title: 6. Backup & disaster recovery strategy
 description: Native per-service backup features versus Backup and DR Service, and the cost logic behind RPO/RTO planning.
 keywords: [Backup and DR, RPO, RTO, disaster recovery, Persistent Disk snapshots]
 sidebar_position: 6

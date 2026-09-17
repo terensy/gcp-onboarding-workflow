@@ -7,7 +7,7 @@ sidebar_position: 3
 
 # 3.3 Private Access & Cloud DNS
 
-If a VM only has an internal IP (per the [`compute.vmExternalIpAccess` policy](/organization-setup/organization-policies)), how does it reach Google APIs? Two mechanisms:
+If a VM only has an internal IP (per [Section 2.2](/organization-setup/organization-policies)'s `compute.vmExternalIpAccess` policy), how does it reach Google APIs? Two mechanisms:
 
 - **[Private Google Access](https://docs.cloud.google.com/vpc/docs/private-google-access)**: a subnet-level switch that lets internal-IP-only instances reach Google APIs' public endpoints. Simple to set up, but doesn't support regional or multi-regional endpoints.
 - **[Private Service Connect (PSC)](https://docs.cloud.google.com/vpc/docs/private-service-connect)**: creates an endpoint using an internal IP inside your own VPC, so traffic never leaves Google's network at all. [Google's own Security Foundations Blueprint](https://docs.cloud.google.com/architecture/blueprints/security-foundations/networking) currently uses exactly this — PSC combined with a private DNS zone — rather than relying on Private Google Access alone.

@@ -29,7 +29,7 @@ Start from [1. Verify domain & initialise Cloud Identity](/cloud-identity/verify
 
 - [2. Organization setup](/organization-setup/folders-projects): folder/project hierarchy, Organization Policies, billing, IAM
 - [3. GCP network design](/network-design/architecture): Shared VPC, hybrid connectivity, firewalls
-- [4. Log management](/logging/audit-logs): Cloud Audit Logs, aggregated log sinks
+- [4. Log management](/logging/audit-logs): Cloud Audit Logs, centralised log sinks
 - [5. Security products](/security-products/scc): SCC, VPC-SC, KMS, Secret Manager, Cloud Armor
 - [6. Backup & disaster recovery strategy](/backup-dr)
 - [7. Infrastructure as Code bootstrap](/iac-bootstrap)
