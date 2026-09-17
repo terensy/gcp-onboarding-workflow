@@ -201,6 +201,53 @@ policies:
       套用前請以 gcloud org-policies list --organization=ORG_ID 核對可用性。
 
   # =========================================================================
+  # AI / Vertex AI 專屬（延伸建議，2 項）
+  # 對應 ai-onboarding/README.md 的「必做 Baseline」，不屬於 CIS Benchmark
+  # v5.0.0 涵蓋範圍，是本專案針對 AI workload 額外新增的治理項目。
+  # =========================================================================
+
+  - id: iam.automaticIamGrantsForDefaultServiceAccounts
+    display_name: "Disable automatic IAM grants for default service accounts"
+    category: extended
+    type: boolean
+    default_enforce: true
+    attach_level: organization
+    folder_override_allowed: true
+    enabled: true
+    cis_ref: []
+    notes: >
+      非 CIS Benchmark 涵蓋範圍，但精神上呼應既有 iam.disableServiceAccountKeyCreation：
+      Google 預設會讓 default service account（含 Vertex AI 相關服務建立的）自動拿到
+      roles/editor，enforce 後改為必須顯式指派最小權限。schema 已於官方文件確認為
+      單純 boolean（operator "Is", value "False"），信心程度等同其他已 codify 的
+      boolean 政策。對應 ai-onboarding/README.md 的 Baseline 預設值：
+      Vertex AI workload 一律要求用專屬 Service Account，不吃 default SA 的寬鬆權限。
+
+  - id: vertexai.allowedModels
+    display_name: "Allowed Vertex AI Model Garden models and actions"
+    category: extended
+    type: list
+    value_kind: model_action_reference   # 格式 "publishers/{publisher}/models/{model}:{action}"，例如 publishers/google/models/gemini-3.5-flash:predict
+    default_mode: allow_values
+    default_values: []              # 不要用猜的模型清單；跟客戶確認實際要開放的 model:action 組合後，透過 value_overrides 注入
+    attach_level: organization
+    folder_override_allowed: true   # 例如 AI 沙箱/POC 用的 folder 可能需要暫時放寬到更多模型做評估
+    enabled: false                  # 尚未對照客戶實際 org 驗證過完整 schema，先保持關閉，見下方 notes
+    cis_ref: []
+    confidence: verify_before_use
+    notes: >
+      對應 ai-onboarding/README.md 的 Baseline 預設值草案：保守起點是只放行
+      Google 首方 Gemini 系列模型，第三方/開源模型（Model Garden 上架的合作夥伴模型）
+      需要額外申請才開通。根據 Google 官方文件（Control access to Model Garden models），
+      值的格式是 allowedValues/deniedValues 底下列出 "publishers/{publisher}/models/{model}:{action}"，
+      action 常見為 predict/tune/deploy；若無政策，預設為全部放行。這條支援
+      dryRunSpec（dry-run 模式，只記錄不擋），套用前務必先 dry-run 觀察一輪，
+      確認不會擋到既有合法用途，再實際 enforce——呼應本專案 VPC-SC 的 dry-run 慣例。
+      本項標記 confidence: verify_before_use、enabled: false，是因為上述格式來自
+      官方文件而非對照客戶實際 org 用 gcloud org-policies describe --effective 驗證過，
+      套用前請先執行驗證，核對無誤後再改成 enabled: true。
+
+  # =========================================================================
   # Google 自動強制（19 項）
   #
   # 其中 5 項命名語意明確（disable/block 型布林，猜錯 schema 只會導致
@@ -213,7 +260,7 @@ policies:
   # 「成功套用但做錯事」而非安全失敗，風險層級不同，不適合用猜的寫入。
   # module 仍會強制跳過這些（即使 enabled: true 也一樣）。
   #
-  # 要驗證「這 14 項＋其餘全部 33 項目前實際生效狀態」，不需要先猜對
+  # 要驗證「這 14 項＋其餘全部 35 項目前實際生效狀態」，不需要先猜對
   # schema，執行唯讀腳本（讀取 gcloud --effective 的 booleanPolicy/listPolicy
   # 欄位，型態由 API 回應自己標明）：
   #   ./scripts/verify_effective_policies.sh ORG_ID
