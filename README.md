@@ -2,6 +2,8 @@
 
 > [!TIP]
 > **中小型企業第一次導入 GCP？** 這份文件是完整的企業級導入流程，涵蓋多環境、完整合規政策等大型企業才需要的複雜度。如果只需要一套「不做會出事、做了成本可控」的最小可用架構，直接看 [sme-quickstart/](sme-quickstart/)——精簡版 Terraform，一次 `terraform apply` 佈出 Folder/Project、Organization Policies 子集、IAM、Shared VPC（含選用的 VPN）、集中稽核 Logging，且升級路徑直接沿用本文件底下各章節的企業版子專案，不需要重寫架構。
+>
+> **導入範圍包含 AI/ML workload（Vertex AI、Gemini Enterprise）？** 額外的治理與護欄（Model Garden 白名單、Model Armor、Sensitive Data Protection 等）見 [ai-onboarding/](ai-onboarding/)——目前仍在建置中，部分項目已有可用的 Terraform，其餘仍是規劃階段，套用前請先看該文件的「現況總覽」確認每一項的實際狀態。
 
 ## 目錄
 
@@ -134,7 +136,7 @@ GCP Organization Policies 主要是讓管理員在機構、資料夾或專案層
 
 基本上當 GCP Organization 啟用後已經有 [預設 Organization Policies](https://docs.cloud.google.com/organization-policy/reference/org-policy-constraints#automatically_enforced_constraints) 啟用。如果公司政策需要符合基本的 CIS Benchmark，可以參考 [organization-policies/](organization-policies/) 這個子專案：
 
-- [organization-policies/docs/policy_catalog.md](organization-policies/docs/policy_catalog.md) — 依據 [CIS Google Cloud Platform Foundation Benchmark v5.0.0](organization-policies/references/CIS_Google_Cloud_Platform_Foundation_Benchmark_v5.0.0.pdf) 整理的 33 項政策中英對照表。
+- [organization-policies/docs/policy_catalog.md](organization-policies/docs/policy_catalog.md) — 依據 [CIS Google Cloud Platform Foundation Benchmark v5.0.0](organization-policies/references/CIS_Google_Cloud_Platform_Foundation_Benchmark_v5.0.0.pdf) 整理的 35 項政策中英對照表(含 2 項 AI/Vertex AI 專屬延伸建議)。
 - [organization-policies/docs/methodology.md](organization-policies/docs/methodology.md) — 如何依公司自己的風險與業務需求決定「哪些政策要開、開在哪個層級、值該填什麼」，而不是把 CIS 建議照單全收。
 - [organization-policies/README.md](organization-policies/README.md) — 對應的 Terraform module，讀 `policies_catalog.yaml` 用 `for_each` 產生 `google_org_policy_policy` 資源，可直接 `terraform init/plan/apply` 套用。
 
