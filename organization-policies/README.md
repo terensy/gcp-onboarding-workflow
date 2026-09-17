@@ -11,13 +11,13 @@ CIS Google Cloud Platform Foundation Benchmark v5.0.0 建議新增的政策項�
 [docs/methodology.md](docs/methodology.md)。
 
 > [!NOTE]
-> 這個 module 也被 [sme-quickstart/](../sme-quickstart/) 直接引用——中小企業版本不用完整 33 條 catalog，而是用 `enabled_policy_ids` 白名單只套用其中 8 條，catalog 本身不用另外複製一份。
+> 這個 module 也被 [sme-quickstart/](../sme-quickstart/) 直接引用——中小企業版本不用完整 35 條 catalog，而是用 `enabled_policy_ids` 白名單只套用其中 8 條，catalog 本身不用另外複製一份。
 
 ## 目錄結構
 
 ```
 .
-├── policies_catalog.yaml          # 唯一資料來源：33 項政策的完整 metadata
+├── policies_catalog.yaml          # 唯一資料來源：35 項政策的完整 metadata
 ├── modules/org_policies/          # 核心 module，讀 catalog 並用 for_each 產生資源
 │   ├── main.tf
 │   ├── variables.tf
@@ -29,11 +29,11 @@ CIS Google Cloud Platform Foundation Benchmark v5.0.0 建議新增的政策項�
 │   ├── versions.tf
 │   └── terraform.tfvars.example
 ├── docs/
-│   ├── policy_catalog.md          # 33 項政策中英對照表
+│   ├── policy_catalog.md          # 35 項政策中英對照表
 │   └── methodology.md             # 如何依公司內部需求調整政策的方法論
 ├── references/                    # CIS Benchmark 原始 PDF/CSV，供日後比對新版差異
 └── scripts/
-    └── verify_effective_policies.sh   # 唯讀稽核：對全部 33 項查詢實際生效狀態
+    └── verify_effective_policies.sh   # 唯讀稽核：對全部 35 項查詢實際生效狀態
 ```
 
 ## 快速開始
@@ -57,7 +57,7 @@ terraform apply
 | category        | 數量 | module 行為                                  |
 |------------------|-----|------------------------------------------------|
 | `cis_gap`        | 12  | 預設會建立資源（`enabled: true`，除非另有註明）  |
-| `extended`       | 2   | CIS 未直接點名但強化支援對應控制項；1 項預設開啟，1 項預設關閉待核對 |
+| `extended`       | 4   | CIS 未直接點名但強化支援對應控制項，含 2 項 AI/Vertex AI 專屬(對應 [ai-onboarding/](../ai-onboarding/))；2 項預設開啟，2 項預設關閉待核對 |
 | `auto_enforced`  | 19  | Google 已自動強制；其中 5 項 `type: boolean` 會實際建立資源，其餘 14 項仍是 `type: unverified`，**module 一律不建立資源**，只作文件對照 |
 
 `auto_enforced` 底下這 19 項一開始全部標成 `unverified`（官方文件只給
@@ -76,7 +76,7 @@ codify 這些「Google 說會自動強制」的項目，等於沒有任何機制
   是「成功套用但做錯事」——會通過 `apply`、但可能達成跟預期相反的效果，
   比 apply 報錯危險得多，不適合用猜的寫入，繼續維持 `unverified`。
 
-要驗證這 14 項（以及全部 33 項）目前的**實際生效狀態**，不需要先猜對
+要驗證這 14 項（以及全部 35 項）目前的**實際生效狀態**，不需要先猜對
 schema：
 
 ```bash

@@ -1,0 +1,8 @@
+# 複製為 terraform.tfvars 後填入貴組織的實際值，terraform.tfvars 不應提交到版控。
+
+project_id = "my-ai-workload-project"
+location   = "us-central1"
+
+# 第一次套用維持 INSPECT_ONLY（dry-run），觀察一輪 Finding 都是預期內的
+# 違規之後，再手動改成 INSPECT_AND_BLOCK。
+enforcement_type = "INSPECT_ONLY"

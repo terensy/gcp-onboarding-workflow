@@ -30,10 +30,11 @@
 - [8. Resource tagging & labelling strategy](https://terensy.github.io/gcp-onboarding-workflow/governance/tagging): Labels vs Tags, IAM/org policy conditions.
 - [8. Google Cloud Support Plan](https://terensy.github.io/gcp-onboarding-workflow/governance/support-plan): Basic/Standard/Enhanced/Premium tier comparison and P1 SLA.
 - [9. SME quickstart](https://terensy.github.io/gcp-onboarding-workflow/sme-quickstart/overview): Trimmed-down Terraform stack for first-time SME onboarding — folders/projects, an org policy subset, IAM, Shared VPC with optional HA VPN, and a dedicated logging project.
+- [10. AI infrastructure onboarding](https://terensy.github.io/gcp-onboarding-workflow/ai-onboarding/overview): Governance and guardrails for AI/ML workloads (Vertex AI, Gemini Enterprise) layered on the core onboarding — Model Garden allow-listing, Model Armor, Sensitive Data Protection; still under active construction.
 
 ## Source code
 
-- [GitHub repository](https://github.com/terensy/gcp-onboarding-workflow): Full source, including all Terraform modules referenced throughout the guide (organization-policies, iam-bindings, network-design, logging, security-products, iac-bootstrap).
+- [GitHub repository](https://github.com/terensy/gcp-onboarding-workflow): Full source, including all Terraform modules referenced throughout the guide (organization-policies, iam-bindings, network-design, logging, security-products, iac-bootstrap, ai-onboarding).
 
 ## Optional
 

@@ -1,6 +1,6 @@
 # GCP Organization Policy 清單
 
-對應 `policies_catalog.yaml` 目前收錄的 33 項政策，整理成中英對照表，方便非 Terraform 讀者（例如客戶簡報、稽核紀錄）查閱。資料來源與版本同 [README.md](../README.md)：CIS Google Cloud Platform Foundation Benchmark v5.0.0，以及 GCP [Organization Policy Constraints 官方文件](https://docs.cloud.google.com/organization-policy/reference/org-policy-constraints)。
+對應 `policies_catalog.yaml` 目前收錄的 35 項政策，整理成中英對照表，方便非 Terraform 讀者（例如客戶簡報、稽核紀錄）查閱。資料來源與版本同 [README.md](../README.md)：CIS Google Cloud Platform Foundation Benchmark v5.0.0，以及 GCP [Organization Policy Constraints 官方文件](https://docs.cloud.google.com/organization-policy/reference/org-policy-constraints)。其中 2 項是 AI/Vertex AI 專屬的延伸建議，對應 [ai-onboarding/](../../ai-onboarding/) 的 Baseline 規劃，不屬於 CIS Benchmark 範圍。
 
 **GCP Default / CIS 欄位說明：**
 
@@ -33,6 +33,15 @@
 |---|---|---|---|---|
 | Cloud Storage | `storage.publicAccessPrevention` | Blocks public access to Cloud Storage buckets/objects outright, regardless of IAM or ACL grants. | 直接阻擋 bucket 被公開存取，比僅依賴 Domain Restricted Sharing／IAM 更強一層防線。 | Extended（延伸支援 CIS 5.1） |
 | Compute Engine | `compute.vmCanIpForward` | Restricts VM instances from being created/updated with IP forwarding enabled. | 拒絕建立／更新啟用 IP Forwarding 的 VM。新一代 managed constraint，正式命名可能為 `compute.managed.vmCanIpForward`，套用前請核對。 | Extended（延伸支援 CIS 4.6） |
+
+## AI / Vertex AI 專屬（延伸建議，2 項）
+
+對應 [ai-onboarding/README.md](../../ai-onboarding/README.md) 的「必做 Baseline」，不屬於 CIS Benchmark v5.0.0 涵蓋範圍，是本專案針對 AI workload 額外新增的治理項目。
+
+| Service | Policy Name (Constraint ID) | Description (English) | 說明（中文） | GCP Default / CIS |
+|---|---|---|---|---|
+| IAM | `iam.automaticIamGrantsForDefaultServiceAccounts` | Disables automatic IAM role grants (e.g. `roles/editor`) to default service accounts. | 關閉 default service account 自動取得 `roles/editor` 的行為，Vertex AI 相關 workload 需改用專屬服務帳戶。 | Extended（呼應 CIS 1.5 精神，schema 已於官方文件確認） |
+| Vertex AI | `vertexai.allowedModels` | Restricts which Model Garden models (and actions such as predict/tune/deploy) may be used. | 限制 Model Garden 可用的模型與動作（predict/tune/deploy），預設保守值僅放行 Google 首方 Gemini 系列。**`enabled: false`，套用前需先用 `gcloud org-policies describe --effective` 核對實際 schema。** | Extended（`confidence: verify_before_use`） |
 
 ## Google 自動強制 — 已納入 Terraform 管理（5 項）
 
