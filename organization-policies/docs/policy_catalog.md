@@ -36,7 +36,7 @@
 
 ## AI / Vertex AI 專屬（延伸建議，2 項）
 
-對應 [ai-onboarding/README.md](../../ai-onboarding/README.md) 的「必做 Baseline」，不屬於 CIS Benchmark v5.0.0 涵蓋範圍，是本專案針對 AI workload 額外新增的治理項目。
+對應 [ai-onboarding/README.md](../../ai-onboarding/README.md) 的「涵蓋範圍」，不屬於 CIS Benchmark v5.0.0 涵蓋範圍，是本專案針對 AI workload 額外新增的治理項目。
 
 | Service | Policy Name (Constraint ID) | Description (English) | 說明（中文） | GCP Default / CIS |
 |---|---|---|---|---|
